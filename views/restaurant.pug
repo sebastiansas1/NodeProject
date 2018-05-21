@@ -1,0 +1,9 @@
+extends layout
+  
+block content
+  h1= restaurant.name
+  h5 Cousine: #{restaurant.cousine}
+  p= restaurant.description
+  hr
+  a.btn.btn-dark(href='/restaurant/edit/'+restaurant._id) Edit
+  a.btn.btn-danger.delete-restaurant(href='#', data-id=restaurant._id) Delete

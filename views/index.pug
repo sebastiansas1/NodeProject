@@ -3,6 +3,6 @@ extends layout
 block content
   h1 #{title}
   ul.list-group
-    each article in articles
+    each restaurant in restaurants
       li.list-group-item 
-        a(href="/article/"+article._id)= article.title
+        a(href="/restaurant/"+restaurant._id)= restaurant.name

@@ -20,7 +20,7 @@ db.on('error', function(err){
 const app = express();
 
 // Bring in Models
-let Article = require('./models/article');
+let Restaurant = require('./models/restaurant');
 
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -35,52 +35,52 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Home Route
 app.get('/', function (req, res) {
-  Article.find({}, function(err, articles){
+  Restaurant.find({}, function(err, restaurants){
     if(err){
       console.log(err);
     } else {
       res.render('index', {
-        title: 'This is cool',
-        articles: articles
+        title: 'All Restaurants',
+        restaurants: restaurants
       });
     }
   });
 });
 
-// Get single article
-app.get('/article/:id', function(req,res) {
-  Article.findById(req.params.id, function(err, article){
-    res.render('article', {
-      article:article
+// Get single restaurant
+app.get('/restaurant/:id', function(req,res) {
+  Restaurant.findById(req.params.id, function(err, restaurant){
+    res.render('restaurant', {
+      restaurant:restaurant
     });
   });
 });
 
 // Add Route
-app.get('/articles/add', function(req, res) {
-  res.render('add_article', {
-    title: 'Add Article'
+app.get('/restaurants/add', function(req, res) {
+  res.render('add_restaurant', {
+    title: 'Add Restaurant'
   });
 });
 
-// Edit article
-app.get('/article/edit/:id', function(req,res) {
-  Article.findById(req.params.id, function(err, article){
-    res.render('edit_article', {
-      title: 'Edit Article',
-      article:article
+// Edit restaurant
+app.get('/restaurant/edit/:id', function(req,res) {
+  Restaurant.findById(req.params.id, function(err, restaurant){
+    res.render('edit_restaurant', {
+      title: 'Edit Restaurant',
+      restaurant:restaurant
     });
   });
 });
 
 // Add Submit POST Route
-app.post('/articles/add', function(req, res){
-  let article = new Article();
-  article.title = req.body.title;
-  article.author = req.body.author;
-  article.body = req.body.body;
+app.post('/restaurants/add', function(req, res){
+  let restaurant = new Restaurant();
+  restaurant.name = req.body.name;
+  restaurant.cousine = req.body.cousine;
+  restaurant.description = req.body.description;
 
-  article.save(function(err){
+  restaurant.save(function(err){
     if(err){
       console.log(err);
       return;
@@ -91,15 +91,15 @@ app.post('/articles/add', function(req, res){
 });
 
 // Update Submit POST Route
-app.post('/articles/edit/:id', function(req, res){
-  let article = {}
-  article.title = req.body.title;
-  article.author = req.body.author;
-  article.body = req.body.body;
+app.post('/restaurants/edit/:id', function(req, res){
+  let restaurant = {}
+  restaurant.name = req.body.name;
+  restaurant.cousine = req.body.cousine;
+  restaurant.description = req.body.description;
 
   let query = {_id:req.params.id}
 
-  Article.update(query, article, function(err){
+  Restaurant.update(query, restaurant, function(err){
     if(err){
       console.log(err);
       return;
@@ -109,9 +109,9 @@ app.post('/articles/edit/:id', function(req, res){
   });
 });
 
-app.delete('/article/:id', function(req,res){
+app.delete('/restaurant/:id', function(req,res){
   let query = {_id:req.params.id}
-  Article.remove(query, function(err){
+  Restaurant.remove(query, function(err){
     if(err){
       console.log(err);
     }
