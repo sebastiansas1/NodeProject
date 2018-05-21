@@ -5,5 +5,8 @@ block content
   h5 Cousine: #{restaurant.cousine}
   p= restaurant.description
   hr
-  a.btn.btn-dark(href='/restaurant/edit/'+restaurant._id) Edit
-  a.btn.btn-danger.delete-restaurant(href='#', data-id=restaurant._id) Delete
+  .col-md-10
+    .col-md-5
+      a.btn.btn-info(href='/restaurant/edit/'+restaurant._id) Edit
+    .col-md-5
+      a.btn.btn-danger.delete-restaurant(href='#', data-id=restaurant._id) Delete
