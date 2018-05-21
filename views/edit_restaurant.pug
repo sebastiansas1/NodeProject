@@ -2,16 +2,17 @@ extends layout
   
 block content
   h1 #{title}
-  form(method="POST", action="/restaurants/edit/"+restaurant._id)
+  form.edit-form
     #form-group
       label Name:
-      input.form-control(name="name", type="text", value=restaurant.name)
+      input.form-control(id="name",name="name", type="text", value=restaurant.name)
     #form-group
       label Cousine:
-      input.form-control(name="cousine", type="text", value=restaurant.cousine)
+      input.form-control(id="cousine",name="cousine", type="text", value=restaurant.cousine)
     #form-group
       label Description:
-      textarea.form-control(name="description")=restaurant.description
+      textarea.form-control(id="description",name="description")=restaurant.description
     br
-    input.btn.btn-primary(type="submit", value="Submit")
+    //input.btn.btn-primary(type="submit", value="Submit")
+    a.btn.btn-primary.edit-restaurant(data-id=restaurant._id) Save
       
