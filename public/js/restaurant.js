@@ -38,4 +38,27 @@ $(document).ready(function(){
       }
     });
   });
+
+  $('.create-restaurant').on('click', function(e){
+    $target = $(e.target);
+    var name = document.getElementById('name').value;
+    var cousine = document.getElementById('cousine').value;
+    var description = document.getElementById('description').value;
+    $.ajax({
+      type: 'POST',
+      url: '/restaurants/add',
+      data: {
+        'name': name,
+        'description': description,
+        'cousine': cousine
+      },
+      success: function(response){
+        console.log(response);
+        window.location.href='/';   
+      },
+      error: function(err){
+        console.log(err);     
+      }
+    });
+  });
 });

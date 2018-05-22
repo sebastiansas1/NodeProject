@@ -5,16 +5,16 @@ block content
   .container.content
 
     h1 #{title}
-    form(method="POST", action="/restaurants/add")
+    form
       #form-group
         label Name:
-        input.form-control(name="name", type="text")
+        input.form-control(id="name",name="name", type="text")
       #form-group
         label Cousine:
-        input.form-control(name="cousine", type="text")
+        input.form-control(id="cousine",name="cousine", type="text")
       #form-group
         label Description:
-        textarea.form-control(name="description")
+        textarea.form-control(id="description",name="description")
       br
-      input.btn.btn-edit(type="submit", value="Submit")
+      a.btn.btn-save.create-restaurant Save
       
