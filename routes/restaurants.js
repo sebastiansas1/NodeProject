@@ -1,81 +1,25 @@
 const express = require('express');
 const router = express.Router();
 
-// Bring in Restaurant model
-let Restaurant = require('../models/restaurant');
-
+// Bring in Restaurant controller
+let restaurants_controller = require('../controllers/restaurantsController');
 
 // Add Restaurant [GET]
-router.get('/add', function(req, res) {
-  res.render('restaurant/add', {
-    title: 'Add Restaurant'
-  });
-});
+router.get('/add', restaurants_controller.add);
 
-// Add Restaurant [POST]
-router.post('/add', function(req, res){
-  let restaurant = new Restaurant();
-  restaurant.name = req.body.name;
-  restaurant.cousine = req.body.cousine;
-  restaurant.description = req.body.description;
-
-  restaurant.save(function(err){
-    if(err){
-      console.log(err);
-      return;
-    } else {
-      res.redirect('/');
-    }
-  });
-});
+// Create Restaurant [POST]
+router.post('/add', restaurants_controller.create);
 
 // Edit Restaurant [GET]
-router.get('/edit/:id', function(req,res) {
-  Restaurant.findById(req.params.id, function(err, restaurant){
-    res.render('restaurant/edit', {
-      title: 'Edit Restaurant',
-      restaurant:restaurant
-    });
-  });
-});
+router.get('/edit/:id', restaurants_controller.edit);
 
 // Edit Restaurant [POST]
-router.post('/edit/:id', function(req, res){
-  let restaurant = {}
-  restaurant.name = req.body.name;
-  restaurant.cousine = req.body.cousine;
-  restaurant.description = req.body.description;
-
-  let query = {_id:req.params.id}
-
-  Restaurant.update(query, restaurant, function(err){
-    if(err){
-      console.log(err);
-      return;
-    } else {
-      res.redirect('/restaurants/'+req.params.id);
-    }
-  });
-});
+router.post('/edit/:id', restaurants_controller.update);
 
 // Show Restaurant [GET]
-router.get('/:id', function(req,res) {
-  Restaurant.findById(req.params.id, function(err, restaurant){
-    res.render('restaurant/show', {
-      restaurant:restaurant
-    });
-  });
-});
+router.get('/:id', restaurants_controller.show);
 
 // Delete Restaurant [DELETE]
-router.delete('/:id', function(req,res){
-  let query = {_id:req.params.id}
-  Restaurant.remove(query, function(err){
-    if(err){
-      console.log(err);
-    }
-    res.send('Success');
-  });
-});
+router.delete('/:id', restaurants_controller.delete);
 
 module.exports = router;
