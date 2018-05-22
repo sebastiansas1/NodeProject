@@ -47,78 +47,10 @@ app.get('/', function (req, res) {
   });
 });
 
-// Show Restaurant
-app.get('/restaurant/:id', function(req,res) {
-  Restaurant.findById(req.params.id, function(err, restaurant){
-    res.render('restaurant/show', {
-      restaurant:restaurant
-    });
-  });
-});
+// Route Files
+let restaurants = require('./routes/restaurants');
 
-// Add Route
-app.get('/restaurants/add', function(req, res) {
-  res.render('restaurant/add', {
-    title: 'Add Restaurant'
-  });
-});
-
-// Edit restaurant
-app.get('/restaurant/edit/:id', function(req,res) {
-  Restaurant.findById(req.params.id, function(err, restaurant){
-    res.render('restaurant/edit', {
-      title: 'Edit Restaurant',
-      restaurant:restaurant
-    });
-  });
-});
-
-// Add Restaurant
-app.post('/restaurants/add', function(req, res){
-  let restaurant = new Restaurant();
-  restaurant.name = req.body.name;
-  restaurant.cousine = req.body.cousine;
-  restaurant.description = req.body.description;
-
-  restaurant.save(function(err){
-    if(err){
-      console.log(err);
-      return;
-    } else {
-      res.redirect('/');
-    }
-  });
-});
-
-// Update Restaurant
-app.post('/restaurants/edit/:id', function(req, res){
-  let restaurant = {}
-  restaurant.name = req.body.name;
-  restaurant.cousine = req.body.cousine;
-  restaurant.description = req.body.description;
-
-  let query = {_id:req.params.id}
-
-  Restaurant.update(query, restaurant, function(err){
-    if(err){
-      console.log(err);
-      return;
-    } else {
-      res.redirect('/restaurant/'+req.params.id);
-    }
-  });
-});
-
-// Delete Restaurant
-app.delete('/restaurant/:id', function(req,res){
-  let query = {_id:req.params.id}
-  Restaurant.remove(query, function(err){
-    if(err){
-      console.log(err);
-    }
-    res.send('Success');
-  });
-});
+app.use('/restaurants', restaurants);
 
 // Start Server
 app.listen(3000, function () {
