@@ -1,0 +1,21 @@
+mixin restaurant_panel_mini(id, name, cousine)
+  li.list-group-item
+    .row
+      .col-md-2.col-restaurant-picture
+        //- Here Goes Picture of Restaurant
+        img(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="100%",alt="restaurant picture")
+      .col-md-10.col-restaurant-info
+        //- Information About Restaurant
+        a(href="/restaurant/"+id)
+          h4=name
+        p=cousine
+
+mixin restaurant_panel_maxy(name, cousine, description)
+  h1= name
+  hr
+  p.subheading Cousine: #{cousine}
+  p.about= description
+  img.restaurant-pic(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="250px", height="200px",alt="restaurant picture")
+  img.restaurant-pic(src="https://mk0tainsights9mcv7wv.kinstacdn.com/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg", width="250px", height="200px",alt="restaurant picture")
+  img.restaurant-pic(src="http://www.quilon.co.uk/quilon/media/images/Square_396x396/Taj51_Quilon_Private_Dining_5_45366652_sq.jpg?width=396&height=396&ext=.jpg", width="250px", height="200px",alt="restaurant picture")
+  img.restaurant-pic(src="http://www.cityfortal.com/wp-content/uploads/2018/05/restaurants2.jpg", width="250px", height="200px",alt="restaurant picture")

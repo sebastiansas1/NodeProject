@@ -1,0 +1,24 @@
+extends ../panels/layout
+include ../components/restaurant
+include ../components/search
+
+block content
+
+  .search-section
+    .search
+      +search
+
+  .container.content
+  
+    br
+
+    h1 #{title}
+
+    hr
+
+    br
+
+    +restaurants_miniature(restaurant)
+
+
+

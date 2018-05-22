@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Set Public Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 // Home Route
 app.get('/', function (req, res) {
@@ -39,7 +39,7 @@ app.get('/', function (req, res) {
     if(err){
       console.log(err);
     } else {
-      res.render('index', {
+      res.render('restaurant/index', {
         title: 'All Restaurants',
         restaurants: restaurants
       });
@@ -47,10 +47,10 @@ app.get('/', function (req, res) {
   });
 });
 
-// Get single restaurant
+// Show Restaurant
 app.get('/restaurant/:id', function(req,res) {
   Restaurant.findById(req.params.id, function(err, restaurant){
-    res.render('restaurant', {
+    res.render('restaurant/show', {
       restaurant:restaurant
     });
   });
@@ -58,7 +58,7 @@ app.get('/restaurant/:id', function(req,res) {
 
 // Add Route
 app.get('/restaurants/add', function(req, res) {
-  res.render('add_restaurant', {
+  res.render('restaurant/add', {
     title: 'Add Restaurant'
   });
 });
@@ -66,14 +66,14 @@ app.get('/restaurants/add', function(req, res) {
 // Edit restaurant
 app.get('/restaurant/edit/:id', function(req,res) {
   Restaurant.findById(req.params.id, function(err, restaurant){
-    res.render('edit_restaurant', {
+    res.render('restaurant/edit', {
       title: 'Edit Restaurant',
       restaurant:restaurant
     });
   });
 });
 
-// Add Submit POST Route
+// Add Restaurant
 app.post('/restaurants/add', function(req, res){
   let restaurant = new Restaurant();
   restaurant.name = req.body.name;
@@ -90,7 +90,7 @@ app.post('/restaurants/add', function(req, res){
   });
 });
 
-// Update Submit POST Route
+// Update Restaurant
 app.post('/restaurants/edit/:id', function(req, res){
   let restaurant = {}
   restaurant.name = req.body.name;
@@ -104,11 +104,12 @@ app.post('/restaurants/edit/:id', function(req, res){
       console.log(err);
       return;
     } else {
-      res.redirect('/');
+      res.redirect('/restaurant/'+req.params.id);
     }
   });
 });
 
+// Delete Restaurant
 app.delete('/restaurant/:id', function(req,res){
   let query = {_id:req.params.id}
   Restaurant.remove(query, function(err){

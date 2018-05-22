@@ -1,0 +1,32 @@
+html(lang="en")
+
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="/bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Ubuntu')
+    script(src='/bundle.js')
+    title FancyFood
+
+  body
+
+    header
+      .brand
+        img(src="https://logosinside.com/uploads/posts/2016-09/medium/noodles-and-company-logo.png", alt="logo", width="100px", height="50px")
+      nav.nav.justify-content-center
+        a.nav-link(href='/') Home
+        a.nav-link(href='/restaurants/add') Add Restaurant
+        a.nav-link(href='#') Log In
+
+    main.middle-section
+      block content
+      br
+    
+    footer
+      p.copyright Copyright &reg; 2018
+
+
+  script(src='/bower_components/jquery/dist/jquery.js')
+  script(src='/js/restaurant.js')
+

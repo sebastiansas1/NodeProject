@@ -1,0 +1,20 @@
+extends ../panels/layout
+  
+block content
+
+  .container.content
+
+    h1 #{title}
+    form(method="POST", action="/restaurants/add")
+      #form-group
+        label Name:
+        input.form-control(name="name", type="text")
+      #form-group
+        label Cousine:
+        input.form-control(name="cousine", type="text")
+      #form-group
+        label Description:
+        textarea.form-control(name="description")
+      br
+      input.btn.btn-edit(type="submit", value="Submit")
+      

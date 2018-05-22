@@ -1,0 +1,12 @@
+include ../panels/restaurant
+
+mixin restaurants_miniature(restaurant)
+
+  each restaurant in restaurants
+
+    +restaurant_panel_mini(restaurant._id, restaurant.name, restaurant.cousine)
+
+mixin restaurant_maximised(restaurant)
+
+  +restaurant_panel_maxy(restaurant.name, restaurant.cousine, restaurant.description)
+    

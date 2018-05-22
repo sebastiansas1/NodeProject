@@ -1,0 +1,20 @@
+extends ../panels/layout
+  
+block content
+
+  .container.content
+
+    h1 #{title}
+    form.edit-form
+      #form-group
+        label Name:
+        input.form-control(id="name",name="name", type="text", value=restaurant.name)
+      #form-group
+        label Cousine:
+        input.form-control(id="cousine",name="cousine", type="text", value=restaurant.cousine)
+      #form-group
+        label Description:
+        textarea.form-control(id="description",name="description")=restaurant.description
+      br
+      a.btn.btn-save.edit-restaurant(data-id=restaurant._id) Save
+      
