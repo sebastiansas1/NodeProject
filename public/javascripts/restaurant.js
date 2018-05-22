@@ -54,17 +54,18 @@ $(document).ready(function(){
   $('.delete-restaurant').on('click', function(e){
     $target = $(e.target);
     const id = $target.attr('data-id');
-    $.ajax({
-      type: 'DELETE',
-      url: '/restaurants/'+id,
-      success: function(response){
-        alert('Sure you want to delete?');
-        window.location.href='/';
-      },
-      error: function(err){
-        console.log(err);
-      }
-    });
+    var confirmation = confirm("Are you sure you want to delete?");
+    if (confirmation) {
+      $.ajax({
+        type: 'DELETE',
+        url: '/restaurants/'+id,
+        success: function(response){
+          window.location.href='/';
+        },
+        error: function(err){
+          console.log(err);
+        }
+      });
+    }
   });
-
 });
