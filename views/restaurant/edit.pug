@@ -1,21 +1,24 @@
 extends ../panels/layout
-  
+include ../components/form
+
 block content
 
   .container.content
 
     h1 #{title}
-    form.edit-form
-      #form-group
-        label Name:
-        input.form-control(id="name",name="name", type="text", value=restaurant.name)
 
-      #form-group
-        label Cuisine:
-        input.form-control(id="cuisine",name="cuisine", type="text", value=restaurant.cuisine[0])
-      #form-group
-        label Description:
-        textarea.form-control(id="description",name="description")=restaurant.description
-      br
+    form.edit-form
+      //- Form Group with parameters (LabelName, ID, input, type, value)
+      +form_group("Name", "name", "input", "text", restaurant.name)
+      +form_group("Address Line 1", "addressLine1", "input", "text", restaurant.addressLine1)
+      +form_group("Address Line 2", "addressLine2", "input", "text", restaurant.addressLine2)
+      +form_group("City", "city", "input", "text", restaurant.city)
+      +form_group("County", "county","input", "text", restaurant.county)
+      +form_group("Country", "country","input", "text", restaurant.country)
+      +form_group("Postcode", "postcode","input", "text", restaurant.postcode)
+      +form_group("Phone", "phoneNumber","input", "number", restaurant.phoneNumber)
+      +form_group("Website", "website","input", "text", restaurant.website)
+      +form_group("Cuisine", "cuisine", "input", "text", restaurant.cuisine[0])
+      +form_group("Description", "description","input", "text", restaurant.description)
       a.btn.btn-save.edit-restaurant(data-id=restaurant._id) Save
       

@@ -1,6 +1,6 @@
-mixin form_group(label, input_type, submit_message)
+mixin form_group(label, id, input, input_type, value)
 
   #form-group
-    label label:
-    input_type.form-control(id="#{label.toLowerCase()}",name="#{label.toLowerCase()}")
+    label #{label}:
+    #{input}.form-control(id=id, type=input_type, value=value)
   br
