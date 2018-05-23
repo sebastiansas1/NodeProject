@@ -50,7 +50,7 @@ app.get('/', function (req, res) {
 //Search Route
 app.get('/search/:search_form1', function (req, res) {
   let search_form1 = req.params.search_form1;
-  Restaurant.find({}).where('name').equals(search_form1).select({}).exec( function(err, restaurants){
+  Restaurant.find({'name': { "$regex": search_form1}}, function(err, restaurants){
     if(err){
       console.log(err);
     } else {
