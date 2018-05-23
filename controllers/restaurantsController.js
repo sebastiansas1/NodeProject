@@ -12,7 +12,15 @@ exports.add = function(req, res) {
 exports.create = function(req, res){
   let restaurant = new Restaurant();
   restaurant.name = req.body.name;
-  restaurant.cousine = req.body.cousine;
+  restaurant.addressLine1 = req.body.addressLine1; 
+  restaurant.addressLine2 = req.body.addressLine2;
+  restaurant.city = req.body.city;
+  restaurant.county = req.body.county;
+  restaurant.country = req.body.country;
+  restaurant.postcode = req.body.postcode;
+  restaurant.phoneNumber = req.body.phoneNumber;
+  restaurant.website = req.body.website;
+  restaurant.cuisine = req.body.cuisine;
   restaurant.description = req.body.description;
 
   restaurant.save(function(err){
@@ -39,7 +47,15 @@ exports.edit = function(req,res) {
 exports.update = function(req, res){
   let restaurant = {}
   restaurant.name = req.body.name;
-  restaurant.cousine = req.body.cousine;
+  restaurant.addressLine1 = req.body.addressLine1; 
+  restaurant.addressLine2 = req.body.addressLine2;
+  restaurant.city = req.body.city;
+  restaurant.county = req.body.county;
+  restaurant.country = req.body.country;
+  restaurant.postcode = req.body.postcode;
+  restaurant.phoneNumber = req.body.phoneNumber;
+  restaurant.website = req.body.website;
+  restaurant.cuisine = req.body.cuisine;
   restaurant.description = req.body.description;
 
   let query = {_id:req.params.id}

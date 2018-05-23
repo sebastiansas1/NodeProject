@@ -1,20 +1,52 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Restaurant Schema
-let restaurantSchema = mongoose.Schema({
+const restaurantSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  cousine: {
+  addressLine1: {
     type: String,
     required: true
   },
+  addressLine2: {
+    type: String,
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  county: {
+    type: String,
+    required: true
+  },
+  country: {
+    type: String,
+    required: true
+  },
+  postcode: {
+    type: String,
+    required: true
+  },
+  phoneNumber: {
+    type: Number,
+    required: true
+  },
+  website: {
+    type: String,
+  },
+  cuisine:  
+    [{
+      type: String,
+      required: true
+    }],
   description: {
     type: String,
     required: true
   }
+  
 });
 
 
-let Restaurant = module.exports = mongoose.model('Restaurant', restaurantSchema);
+const Restaurant = module.exports = mongoose.model('Restaurant', restaurantSchema);

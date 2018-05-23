@@ -9,9 +9,10 @@ block content
       #form-group
         label Name:
         input.form-control(id="name",name="name", type="text", value=restaurant.name)
+
       #form-group
-        label Cousine:
-        input.form-control(id="cousine",name="cousine", type="text", value=restaurant.cousine)
+        label Cuisine:
+        input.form-control(id="cuisine",name="cuisine", type="text", value=restaurant.cuisine[0])
       #form-group
         label Description:
         textarea.form-control(id="description",name="description")=restaurant.description
