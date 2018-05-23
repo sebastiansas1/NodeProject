@@ -47,6 +47,23 @@ app.get('/', function (req, res) {
   });
 });
 
+//Search Route
+app.get('/search/:search_form1', function (req, res) {
+  let search_form1 = req.params.search_form1;
+  Restaurant.find({}).where('name').equals(search_form1).select({}).exec( function(err, restaurants){
+    if(err){
+      console.log(err);
+    } else {
+      console.log(restaurants)
+      res.render('restaurant/index', {
+        title: 'Search result for '+ search_form1,
+        restaurants: restaurants    
+      });
+    }
+  })
+  
+});
+
 // Route Files
 let restaurants = require('./routes/restaurants');
 
