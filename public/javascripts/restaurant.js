@@ -100,26 +100,4 @@ $(document).ready(function(){
       });
     }
   });
-
-   // Delete Restaurant AJAX
-   $('.btn-search1').on('click', function(e){
-    window.console.log("search button clicked");  
-    $target = $(e.target);
-    var search_form1 = document.getElementById('search-form1').value;
-    window.console.log("search = " + search_form1); 
-    $.ajax({
-      type: 'GET',
-      url: '/',
-      data: {
-        'search_form1': search_form1
-      },
-      success: function(response){
-        console.log(response);
-        window.location.href='/search/'+search_form1;        
-      },
-      error: function(err){
-        console.log(err);     
-      }
-    });
-  });
 });

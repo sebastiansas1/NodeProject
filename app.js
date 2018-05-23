@@ -48,23 +48,21 @@ app.get('/', function (req, res) {
 });
 
 //Search Route
-app.get('/search/:search_form1', function (req, res) {
-  let search_form1 = req.params.search_form1;
-  Restaurant.find({'name': { "$regex": search_form1}}, function(err, restaurants){
+app.get('/search/:search_query', function (req, res) {
+  let search_query = req.params.search_query;
+  Restaurant.find({'name': { "$regex": search_query}}, function(err, restaurants){
     if(err){
       console.log(err);
     } else {
       console.log(restaurants)
       res.render('restaurant/index', {
-        title: 'Search result for '+ search_form1,
+        title: 'Search result for '+ search_query,
         restaurants: restaurants    
       });
     }
   })
-  
 });
 
-// Route Files
 // Routes definitions
 let restaurants = require('./routes/restaurants');
 let users = require('./routes/users');
