@@ -65,9 +65,12 @@ app.get('/search/:search_form1', function (req, res) {
 });
 
 // Route Files
+// Routes definitions
 let restaurants = require('./routes/restaurants');
+let users = require('./routes/users');
 
 app.use('/restaurants', restaurants);
+app.use('/users', users);
 
 // Start Server
 app.listen(3000, function () {
