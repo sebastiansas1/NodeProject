@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+let autocomplete=require('./controllers/restaurantsController');
 
 mongoose.connect('mongodb://localhost/tut1');
 let db = mongoose.connection;
@@ -62,6 +63,38 @@ app.get('/search/:search_query', function (req, res) {
     }
   })
 });
+
+//Autocomplete Route
+// app.get('/autocomplete/:autocomplete_query',function(req,res){
+//   var autocomplete = req.params.autocomplete_query;
+//   var regex = autocomplete;
+//   var query = Restaurant.find({name: regex}, { 'name': 1 });
+
+//      // Execute query in a callback and return users list
+//      query.exec(function(err, restaurants) {
+//       if (!err) {
+//          // Method to construct the json result set
+//          var result = buildResultSet(restaurants); 
+//          res.send(result, {
+//             'Content-Type': 'application/json'
+//          }, 200);
+//       } else {
+//          res.send(JSON.stringify(err), {
+//             'Content-Type': 'application/json'
+//          }, 404);
+//       }
+//    });
+
+// });
+exports.find = function(req, res) {
+  var b=req.params.search;
+  db.collection('restaurants', function(err, collection) {
+        collection.find({content: new RegExp(b,'i')}).limit(5).toArray(function(err, items) {
+                  res.jsonp(items);
+              });
+          });
+  };
+app.get('/autocomplete/:search',autocomplete.find);
 
 // Routes definitions
 let restaurants = require('./routes/restaurants');
