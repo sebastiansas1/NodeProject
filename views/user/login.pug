@@ -5,7 +5,7 @@ block content
 
   .container.content
 
-    h1 Registration Form
+    h1 Log In
 
     br
 
@@ -13,6 +13,9 @@ block content
       //- Form Group with parameters (LabelName, ID, input, type, value)
       +form_group("Email", "email", "input", "text")
       +form_group("Password", "password", "input", "password")
-      +form_group("Confirm Password", "c-password", "input", "password")
-      a.btn.btn-save.signup Register
-      
+      a.btn.btn-save.login Log In
+    
+    li.list-group-item
+      .row
+        p.signup-comment Don't have an account?
+        a.signup-link(href='/users/signup') Register

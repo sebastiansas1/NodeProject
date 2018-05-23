@@ -4,19 +4,19 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
   email: {
     type: String,
-    required: true
-  },
-  username: {
-    type: String,
-    required: true
+    required: true,
+    unique:true
   },
   password: {
     type: String,
     required: true
   },
-  name: {
-    type: String,
-    required: true
+  // https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-Role
+  // Reference for calling this admin
+  admin: {
+    type: Boolean,
+    required: true,
+    default: false
   }
 });
 
