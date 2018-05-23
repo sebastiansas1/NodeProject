@@ -18,7 +18,8 @@ $(document).ready(function(){
     $.ajax({
       type: 'POST',
       url: '/restaurants/add',
-      data: {
+      contentType: 'application/json', 
+      data: JSON.stringify({
         'name': name,
         'addressLine1': addressLine1,
         'addressLine2': addressLine2,
@@ -30,12 +31,13 @@ $(document).ready(function(){
         'website': website, 
         'cuisine': cuisine,
         'description': description
-      },
-      success: function(response){
-        console.log(response);
+      }),
+      success: function(res){
+        console.log('Success');
         window.location.href='/';   
       },
       error: function(err){
+        console.log('Error');
         console.log(err);     
       }
     });
@@ -59,7 +61,8 @@ $(document).ready(function(){
     $.ajax({
       type: 'POST',
       url: '/restaurants/edit/'+id,
-      data: {
+      contentType: 'application/json', 
+      data: JSON.stringify({
         'name': name,
         'addressLine1': addressLine1,
         'addressLine2': addressLine2,
@@ -71,12 +74,13 @@ $(document).ready(function(){
         'website': website, 
         'cuisine': cuisine,
         'description': description
-      },
-      success: function(response){
-        console.log(response);
+      }),
+      success: function(res){
+        console.log('Successs');
         window.location.href='/restaurants/'+id;        
       },
       error: function(err){
+        console.log('Error');
         console.log(err);     
       }
     });
@@ -91,10 +95,12 @@ $(document).ready(function(){
       $.ajax({
         type: 'DELETE',
         url: '/restaurants/'+id,
-        success: function(response){
+        success: function(res){
+          console.log('Successs')
           window.location.href='/';
         },
         error: function(err){
+          console.log('Error')
           console.log(err);
         }
       });

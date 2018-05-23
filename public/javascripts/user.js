@@ -17,10 +17,11 @@ $(document).ready(function(){
         'c_password': c_password
       }),
       success: function(response){
-        console.log('Succeeded');  
+        console.log('Success');  
+        window.location.href='/'; 
       },
       error: function(err){
-        console.log('ERRRRRORRRRR')
+        console.log('Error')
         console.log(err);     
       }
     });

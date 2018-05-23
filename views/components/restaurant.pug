@@ -4,9 +4,9 @@ mixin restaurants_miniature(restaurant)
 
   each restaurant in restaurants
 
-    +restaurant_panel_mini(restaurant._id, restaurant.name, restaurant.cousine)
+    +restaurant_panel_mini(restaurant._id, restaurant.name, restaurant.cuisine)
 
 mixin restaurant_maximised(restaurant)
 
-  +restaurant_panel_maxy(restaurant.name, restaurant.cousine, restaurant.description)
+  +restaurant_panel_maxy(restaurant.name, restaurant.cuisine, restaurant.description)
     

@@ -28,10 +28,9 @@ exports.register = function(req, res){
         user.save(function(err){
           if(err){
             console.log(err);
-            return;
           } else {
             console.log('It worked');
-            res.render('user/login');
+            res.send(200);
           }
         });
 
