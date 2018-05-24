@@ -18,7 +18,9 @@ html(lang="en")
       nav.nav.justify-content-center
         a.nav-link(href='/') Home
         a.nav-link(href='/restaurants/add') Add Restaurant
-        a.nav-link(href='/users/login') Log In
+      ul.nav.navbar-nav.navbar-right
+        li  
+          a.nav-link(href='/users/login') Log In
 
     main.middle-section
       block content
@@ -30,7 +32,7 @@ html(lang="en")
 
   script(src='/bower_components/jquery/dist/jquery.js')
   script(src='/bower_components/jquery-ui/jquery-ui.js')
-  script(src='/javascripts/restaurant.js')
+  script(src='/javascripts/restaurant.js')  
   script(src='/javascripts/search.js')
   script(src='/javascripts/user.js')
 

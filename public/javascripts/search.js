@@ -24,6 +24,7 @@ $(document).ready(function() {
   $("#form-search1")
     .autocomplete({
       source: function(req, res) {
+
         $.ajax({
           url: "/autocomplete/" + req.term,
           type: "GET",
@@ -35,6 +36,7 @@ $(document).ready(function() {
                   label: item.name,
                   value: item.name
                 };
+                
               })
             );
           },
