@@ -1,5 +1,41 @@
 const express = require("express");
 const router = express.Router();
+var multer = require("multer");
+// Bring in Restaurant model
+let Restaurant = require("../models/restaurant");
+const multerConfig = {
+    
+  storage: multer.diskStorage({
+   //Setup where the user's file will go
+   destination: function(req, file, next){
+     next(null, './public/uploads');
+     },   
+      
+      //Then give the file a unique name
+      filename: function(req, file, next){
+          console.log(file);
+          const ext = file.mimetype.split('/')[1];
+          next(null, file.fieldname + '-' + Date.now() + '.'+ext);
+        }
+      }),   
+      
+      //A means of ensuring only images are uploaded. 
+      fileFilter: function(req, file, next){
+            if(!file){
+              next();
+            }
+          const image = file.mimetype.startsWith('image/');
+          if(image){
+            console.log('photo uploaded');
+            next(null, true);
+          }else{
+            console.log("file not supported");
+            
+            //TODO:  A better message response to user on failure.
+            return next();
+          }
+      }
+    };
 
 // Bring in Restaurant controller
 let restaurants_controller = require("../controllers/restaurantsController");
@@ -24,5 +60,40 @@ router.get("/search_query/:name", restaurants_controller.display);
 
 // Delete Restaurant [DELETE]
 router.delete("/:id", restaurants_controller.delete);
+
+// Upload images [GET] 
+router.get("/upload/:id", restaurants_controller.upload);
+
+//Upload image [POST]
+router.post('/upload/:id', multer(multerConfig).array('restaurantImage',5), (req, res, next) => {
+  console.log("here 0 file length is " + req.files.length);
+  let restaurant = {};
+  var path_image = [];
+  //console.log("here 2: restaurant length " + restaurant.restaurantImage.length);
+  for(var i = 0; i < req.files.length; i++){
+    console.log("here 1 for " + i + " : " + req.files[i].filename);
+    var storage = 'public/uploads/' +req.files[i].filename;
+    console.log("added " + i);
+    path_image.push(storage);
+}
+console.log("here2: " + path_image);
+console.log("here3: length" + path_image.length);
+console.log("here4: size" + path_image.size);
+
+ 
+  //restaurant.restaurantImage = 'public/uploads/' +req.file.filename;
+
+  let query = { _id: req.params.id };
+  
+  Restaurant.findOneAndUpdate(query, { $push: { restaurantImage: path_image  }}, function(err) {  
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      res.redirect("/restaurants/" + req.params.id);
+    }
+  });
+});
+
 
 module.exports = router;

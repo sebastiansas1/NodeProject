@@ -105,4 +105,38 @@ $(document).ready(function() {
       });
     }
   });
+
+  // AJAX for uploading the photo
+  $(".upload-photo").on("click", function(e) {
+    $target = $(e.target);
+    const id = $target.attr("data-id");
+    console.log("upload button clicked");
+
+    var form = $('#fileUploadForm')[0];
+    var data = new FormData(form);
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/restaurants/upload/" + id,
+  //     enctype: 'multipart/form-data',
+  //     data: data,
+  //     processData: false,
+  //     contentType: false,
+  //     cache: false,
+  //     timeout: 600000,
+  //     success: function (data) {
+  //         $("#result").text(data);
+  //         console.log("SUCCESS : ", data);
+  //         $("#btnSubmit").prop("disabled", false);
+
+  //     },
+  //     error: function (e) {
+  //         $("#result").text(e.responseText);
+  //         console.log("ERROR : ", e);
+  //         $("#btnSubmit").prop("disabled", false);
+
+  //     }
+  // });
+
+
+  });
 });

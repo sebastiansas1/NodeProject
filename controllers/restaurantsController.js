@@ -107,3 +107,25 @@ exports.find = function(req, res) {
     res.jsonp(items);
   });
 };
+
+//
+exports.upload = function(req, res) {
+  Restaurant.findById(req.params.id, function(err, restaurant) {
+    res.render("restaurant/upload", {
+      title: "Upload Image for Restaurant",
+      id: req.params.id,
+      restaurant: restaurant
+    });
+  });
+};
+
+//
+exports.photos = function(req, res) {
+  console.log("reached photos controller, YAAY ");
+  Restaurant.findById(req.params.id, function(err, restaurant) {
+    res.render("restaurant/upload", {
+      title: "Upload Image for Restaurant",
+      restaurant: restaurant
+    });
+  });
+};
