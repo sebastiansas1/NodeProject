@@ -1,12 +1,55 @@
-include ../panels/restaurant
-
 mixin restaurants_miniature(restaurant)
 
   each restaurant in restaurants
-
-    +restaurant_panel_mini(restaurant._id, restaurant.name, restaurant.cuisine)
+    li.list-group-item
+      .row
+        .col-md-2.col-restaurant-picture
+          //- Here Goes Picture of Restaurant
+          img(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="100%",alt="restaurant picture")
+        .col-md-10.col-restaurant-info
+          //- Information About Restaurant
+          a(href="/restaurants/"+restaurant._id)
+            h4=restaurant.name
+          p=restaurant.cuisine
 
 mixin restaurant_maximised(restaurant)
 
-  +restaurant_panel_maxy(restaurant.name, restaurant.cuisine, restaurant.description)
+  .row.restaurant-title
+    .col-md-6.col-restaurant-title
+      h1=restaurant.name
+    .col-md-6.col-restaurant-title
+      a.btn.btn-red.float-right.delete-restaurant(href='#', data-id=restaurant._id) Delete
+      a.btn.btn-gray.float-right(href='/restaurants/edit/'+restaurant._id) Edit
+      
+  hr
+  .row.restaurant-heading-1
+    i.fas.fa-star.heading-1.icon
+    i.fas.fa-star.heading-1.icon
+    i.fas.fa-star.heading-1.icon
+    i.fas.fa-star.heading-1.icon
+    i.far.fa-star.heading-1.icon
+    p.heading-1 based on 213 Reviews | 
+    p.heading-1=restaurant.cuisine
+  .row.restaurant-heading-2
+    i.fas.fa-map-marker-alt.heading-2.icon
+    p.heading-2=restaurant.addressLine1 + ','
+    p.heading-2=restaurant.city + ','
+    p.heading-2=restaurant.country + ','
+    p.heading-2=restaurant.postcode + ' | '
+    i.fas.fa-phone-volume.heading-2.icon
+    p.heading-2=restaurant.phoneNumber + ' | '
+    i.fas.fa-laptop.heading-2.icon-web
+    - if(restaurant.website)
+      p.heading-2
+        a.simple-link(href='http://'+restaurant.website.replace('http://',''))=restaurant.website.replace('http://','')
+  .row.restaurant-pictures
+    img.restaurant-pic(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="250px", height="200px",alt="restaurant picture")
+    img.restaurant-pic(src="https://mk0tainsights9mcv7wv.kinstacdn.com/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg", width="250px", height="200px",alt="restaurant picture")
+    img.restaurant-pic(src="http://www.quilon.co.uk/quilon/media/images/Square_396x396/Taj51_Quilon_Private_Dining_5_45366652_sq.jpg?width=396&height=396&ext=.jpg", width="250px", height="200px",alt="restaurant picture")
+    img.restaurant-pic(src="http://www.cityfortal.com/wp-content/uploads/2018/05/restaurants2.jpg", width="250px", height="200px",alt="restaurant picture")
+  
+  .row
+    br
+  
+  p.description= restaurant.description
     

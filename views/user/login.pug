@@ -10,10 +10,10 @@ block content
     br
 
     form
-      //- Form Group with parameters (LabelName, ID, input, type, value)
-      +form_group("Email", "email", "input", "text")
-      +form_group("Password", "password", "input", "password")
-      a.btn.btn-save.login Log In
+      //- Form Group with parameters (LabelName, ID, input, type, value, form_group_name)
+      +form_group("Email", "email", "input", "text", "", "user-form-group")
+      +form_group("Password", "password", "input", "password", "", "user-form-group")
+      a.btn.btn-purple.login Log In
     
     li.list-group-item
       .row

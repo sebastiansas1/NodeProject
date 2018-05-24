@@ -9,10 +9,21 @@ block content
 
     br
 
-    form
+    form#signup_form
       //- Form Group with parameters (LabelName, ID, input, type, value)
-      +form_group("Email", "email", "input", "text")
-      +form_group("Password", "password", "input", "password")
-      +form_group("Confirm Password", "c-password", "input", "password")
-      a.btn.btn-save.signup Register
+      +form_group("Email", "email", "input", "text", "", "user-form-group")
+      +form_group("Password", "password", "input", "password", "", "password-form-group")
+      #password-dropdown
+        p Your password must fullfil the following criteria:
+          li.password-condition(href='#about', id='password-condition-uppercase') At least 1 uppercase letter
+          li.password-condition(href='#about', id='password-condition-lowercase') At least 1 lowercase letter
+          li.password-condition(href='#about', id='password-condition-digit') At least 1 digit
+          li.password-condition(href='#about', id='password-condition-special') At least 1 special character
+          li.password-condition(href='#about', id='password-condition-length') At least 8 characters in length
+      +form_group("Confirm Password", "c-password", "input", "password", "", "password-form-group")
+      br
+      button.btn.btn-primary(type="submit") Register
+
+      #flash-message
+        .flash-box
       
