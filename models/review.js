@@ -11,12 +11,12 @@ const reviewSchema = mongoose.Schema({
     type: String,
   },
 
-  score: {
+  stars: {
     type: Number,
   },
 
   restaurant_id: {
-    type: Number,
+    type: String,
   }
   
 });
