@@ -73,21 +73,26 @@ $(document).ready(function() {
           success: function(res) {
             // Map res values to fiedl label and value
             window.location.href = "/restaurants/search_query/" + ui.item.value;
+    
           },
           error: function(err) {
             alert("Got to sleep");
           }
         });
+      },
+      create: function(){
+        $(this).data("ui-autocomplete")._renderItem = function(ul, item) {
+          return $("<li>")
+            .data("ui-autocomplete-item", item)
+            .append(
+              '<a><i class="fas fa-utensils ui-icon" style="align: middle;"> </i> ' +
+                item.label +
+                "</a>"
+            )
+            .appendTo(ul);
+        };
       }
+
     })
-    .data("ui-autocomplete")._renderItem = function(ul, item) {
-    return $("<li>")
-      .data("ui-autocomplete-item", item)
-      .append(
-        '<a><i class="fas fa-utensils ui-icon" style="align: middle;"> </i> ' +
-          item.label +
-          "</a>"
-      )
-      .appendTo(ul);
-  };
+    
 });

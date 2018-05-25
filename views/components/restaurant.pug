@@ -54,7 +54,9 @@ mixin restaurant_maximised(restaurant)
   each val in restaurant.restaurantImage
     p New photo
     =val
-    img.restaurant-pic(src=''+val, width="250px", height="200px",alt="restaurant picture")
+    //- img.restaurant-pic(src=('./'+val), width="250px", height="200px",alt="restaurant picture")
+    .resturant-image(id="restaurant-image_"+val)
+
   .row
     br
   
