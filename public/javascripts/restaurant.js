@@ -108,22 +108,40 @@ $(document).ready(function() {
 
   //Display the restaurant image
   $(function() {
-    window.console.log( "ready to display images!" );
     var images = document.getElementsByClassName('resturant-image');
-    window.console.log("got images" + images.length);
     for(var i = 0 ; i<images.length; i++){
-      window.console.log("i = " + i);
-      window.console.log("img " + images[i].id);
-      window.console.log("img src is = " + images[i].id.split('/')[1]);
      
       var elem = document.createElement("img");
-        elem.src = "/" +images[i].id.split('/')[2];
-        elem.setAttribute("class", "restaurant-pic")
+        elem.setAttribute("class", "restaurant-pic")  
+        //elem.src = "/" +images[i].id.split('/')[2]; 
+        elem.setAttribute("src", "/" +images[i].id.split('/')[2])     
         elem.setAttribute("height", "200");
         elem.setAttribute("width", "250");
         elem.setAttribute("alt", "Restaurant Image");
         images[i].appendChild(elem);
     }
+  });
 
+  $(".delete-restaurantImage").on("click", function(e) {
+    
+    $target = $(e.target);
+    const id = $target.attr("data-id");
+    window.console.log("delete this image " + id);
+    var confirmation = confirm("Are you sure you want to delete this photo?");
+    if (confirmation) {
+      $.ajax({
+        type: "POST",
+        url: "/restaurants/upload/delete/"+id,
+        data: id,
+        success: function(res) {
+          console.log("Successs");
+          window.location.href = "/";
+        },
+        error: function(err) {
+          console.log("Error");
+          console.log(err);
+        }
+      });
+    }
   });
 });

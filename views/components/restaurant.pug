@@ -22,7 +22,7 @@ mixin restaurant_maximised(restaurant)
       a.btn.btn-gray.float-right(href='/restaurants/edit/'+restaurant._id) Edit
       span.btn.btn-success.float-right
         i.fas.fa-camera-retro
-        a.simple-link(href='/restaurants/upload/'+restaurant._id) Upload photos
+        a.simple-link(href='/restaurants/upload/'+restaurant._id) Manage photos
          
       
   hr
@@ -54,7 +54,6 @@ mixin restaurant_maximised(restaurant)
   .row.restaurant-pictures
     each val in restaurant.restaurantImage
       .resturant-image(id="restaurant-image_"+val)
-
   .row
     br
   

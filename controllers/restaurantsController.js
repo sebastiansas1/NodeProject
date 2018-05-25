@@ -121,12 +121,17 @@ exports.upload = function(req, res) {
 };
 
 //
-exports.photos = function(req, res) {
-  console.log("reached photos controller, YAAY ");
-  Restaurant.findById(req.params.id, function(err, restaurant) {
-    res.render("restaurant/upload", {
-      title: "Upload Image for Restaurant",
-      restaurant: restaurant
-    });
-  });
-};
+// exports.photos = function(req, res) {
+//   console.log("reached photos controller, YAAY ");
+//   Restaurant.findById(req.params.id, function(err, restaurant) {
+//     res.render("restaurant/upload", {
+//       title: "Upload Image for Restaurant",
+//       restaurant: restaurant
+//     });
+//   });
+// };
+
+exports.delete_photo = function(req, res){
+  console.log("trying to delete photo");
+  let query = { _id: req.params.id };
+}

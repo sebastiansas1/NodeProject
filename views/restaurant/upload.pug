@@ -11,6 +11,11 @@ block content
     h1 #{title} 
     p #{id}
 
+     .row.restaurant-pictures
+      each val in restaurant.restaurantImage
+        .resturant-image(id="restaurant-image_"+val)
+          a.btn.btn-red.float-right.delete-restaurantImage(href='#'+val, data-id=val) Delete
+      
     hr
     form(action="/restaurants/upload/"+id, name="fileUploadForm", enctype='multipart/form-data', method="POST")
       input(type='file', name='restaurantImage', multiple)

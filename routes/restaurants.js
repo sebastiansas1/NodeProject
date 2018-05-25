@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fs = require("fs");
 var multer = require("multer");
 // Bring in Restaurant model
 let Restaurant = require("../models/restaurant");
@@ -76,11 +77,10 @@ router.post('/upload/:id', multer(multerConfig).array('restaurantImage',5), (req
     console.log("added " + i);
     path_image.push(storage);
 }
-console.log("here2: " + path_image);
-console.log("here3: length" + path_image.length);
-console.log("here4: size" + path_image.size);
+  console.log("here2: " + path_image);
+  console.log("here3: length" + path_image.length);
+  console.log("here4: size" + path_image.size);
 
- 
   //restaurant.restaurantImage = 'public/uploads/' +req.file.filename;
 
   let query = { _id: req.params.id };
@@ -95,5 +95,14 @@ console.log("here4: size" + path_image.size);
   });
 });
 
+//Delete image [DELETE]
+router.post("upload/delete", (req, res, next) => {
+  console.log("here 1: delete method called");
+  var id = req.params.id;
+  console.log("ID photo= " + id);
+  let query = { _id: req.params.id };
+  console.log("query " + query);
+
+});
 
 module.exports = router;
