@@ -77,6 +77,7 @@ exports.show = function(req, res) {
     res.render("restaurant/show", {
       restaurant: restaurant
     });
+    res.send(req.params.id);
   });
 };
 

@@ -27,6 +27,7 @@ const app = express();
 
 // Bring in Models
 let Restaurant = require("./models/restaurant");
+let Review = require("./models/review")
 
 // Load View Engine
 app.set("views", path.join(__dirname, "views"));
@@ -97,6 +98,7 @@ app.get("/search/:search_query", function(req, res) {
 // Routes requires
 let restaurants = require("./routes/restaurants");
 let users = require("./routes/users");
+let reviews = require("./routes/reviews", {mergeParams: true});
 
 // Controller requires
 let autocomplete = require("./controllers/restaurantsController");
@@ -105,6 +107,7 @@ let autocomplete = require("./controllers/restaurantsController");
 app.use("/restaurants", restaurants);
 app.get("/autocomplete/:search", autocomplete.find);
 app.use("/users", users);
+restaurants.use('/:restaurant_id/reviews', reviews);
 
 app.use(express.static("public/uploads"));
 // Start Server
