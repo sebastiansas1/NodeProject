@@ -145,7 +145,7 @@ $(document).ready(function() {
         data: parameter,
         success: function(res) {
           console.log("Successs");
-          window.location.href = "/";
+          window.location.href = "/restaurants/upload/"+name;
         },
         error: function(err) {
           console.log("Error");

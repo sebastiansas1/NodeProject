@@ -121,7 +121,7 @@ router.post("/upload/delete/:id", (req, res, next) => {
       fs.unlinkSync(image_path);
       console.log("deleted file locally");
       console.log("Redirecting you to .............." + "/restaurants/upload/" + restaurant_id);
-      res.redirect("/restaurants/upload/" + restaurant_id);
+      res.end();
     }
   });
 
