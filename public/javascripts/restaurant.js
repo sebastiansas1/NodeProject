@@ -108,6 +108,22 @@ $(document).ready(function() {
 
   //Display the restaurant image
   $(function() {
-    console.log( "ready to display images!" );
-});
+    window.console.log( "ready to display images!" );
+    var images = document.getElementsByClassName('resturant-image');
+    window.console.log("got images" + images.length);
+    for(var i = 0 ; i<images.length; i++){
+      window.console.log("i = " + i);
+      window.console.log("img " + images[i].id);
+      window.console.log("img src is = " + images[i].id.split('/')[1]);
+     
+      var elem = document.createElement("img");
+        elem.src = "/" +images[i].id.split('/')[2];
+        elem.setAttribute("class", "restaurant-pic")
+        elem.setAttribute("height", "200");
+        elem.setAttribute("width", "250");
+        elem.setAttribute("alt", "Restaurant Image");
+        images[i].appendChild(elem);
+    }
+
+  });
 });

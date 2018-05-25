@@ -76,6 +76,7 @@ app.use("/restaurants", restaurants);
 app.get("/autocomplete/:search", autocomplete.find);
 app.use("/users", users);
 
+app.use(express.static("public/uploads"));
 // Start Server
 app.listen(3000, function() {
   console.log("Server started on port 3000");
