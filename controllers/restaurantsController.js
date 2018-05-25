@@ -28,7 +28,8 @@ exports.create = function(req, res) {
       console.log(err);
       return;
     } else {
-      res.redirect("/");
+      req.flash('success', 'Restaurant Added!');
+      res.sendStatus(200);
     }
   });
 };

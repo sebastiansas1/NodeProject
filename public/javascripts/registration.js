@@ -32,37 +32,37 @@ $(document).ready(function() {
 
     // At least 1 uppercase letter
     if (pass.match(/.*[A-Z]/)) {
-      $("#password-condition-uppercase").css("color", "green");
+      $("#password-condition-uppercase").css("color", "#00bf93");
     } else {
-      $("#password-condition-uppercase").css("color", "red");
+      $("#password-condition-uppercase").css("color", "gray");
     }
 
     // At least 1 lowercase letter
     if (pass.match(/.*[a-z]/)) {
-      $("#password-condition-lowercase").css("color", "green");
+      $("#password-condition-lowercase").css("color", "#00bf93");
     } else {
-      $("#password-condition-lowercase").css("color", "red");
+      $("#password-condition-lowercase").css("color", "gray");
     }
 
     // At least 1 digit
     if (pass.match(/.*\d/)) {
-      $("#password-condition-digit").css("color", "green");
+      $("#password-condition-digit").css("color", "#00bf93");
     } else {
-      $("#password-condition-digit").css("color", "red");
+      $("#password-condition-digit").css("color", "gray");
     }
 
     // At least 1 special character
     if (pass.match(/.*[_\W]/)) {
-      $("#password-condition-special").css("color", "green");
+      $("#password-condition-special").css("color", "#00bf93");
     } else {
-      $("#password-condition-special").css("color", "red");
+      $("#password-condition-special").css("color", "gray");
     }
 
     // At least 8 characters in length
     if (pass.length > 7) {
-      $("#password-condition-length").css("color", "green");
+      $("#password-condition-length").css("color", "#00bf93");
     } else {
-      $("#password-condition-length").css("color", "red");
+      $("#password-condition-length").css("color", "gray");
     }
 
     validatePassword($(this).val(), $("#c-password").val());
@@ -152,7 +152,7 @@ function validateEmail(email) {
       // Check if email contains . char
       if (email.includes(".")) {
         $("#flash-message").css("visibility", "hidden");
-        $("#email").css("border", "1px solid green");
+        $("#email").css("border", "1px solid #00bf93");
         return true;
       } else {
         // Email missing . char
@@ -174,20 +174,20 @@ function validatePassword(password, c_password) {
     var validFormat = true;
 
     $(".password-condition").each(function() {
-      if ($(this).css("color") != "rgb(0, 128, 0)") {
+      if ($(this).css("color") != "rgb(0, 191, 147)") {
         validFormat = false;
       }
     });
 
     if (validFormat) {
       // Valid password format
-      $("#password").css("border", "1px solid green");
-      $("#password-dropdown").css("border", "1px solid green");
+      $("#password").css("border", "1px solid #00bf93");
+      $("#password-dropdown").css("border", "1px solid #00bf93");
       $("#password-dropdown").css("border-top", "1px solid transparent");
       if (password == c_password) {
         // Passwords match
         $("#flash-message").css("visibility", "hidden");
-        $("#c-password").css("border", "1px solid green");
+        $("#c-password").css("border", "1px solid #00bf93");
         return true;
       } else {
         $("#c-password").css("border", "1px solid lightgray");

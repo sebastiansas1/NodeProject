@@ -2,8 +2,14 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const flash = require('connect-flash');
+const session = require('express-session');
+const expressValidator = require('express-validator');
+const passport = require('passport');
+const config = require('./config/db');
 
-mongoose.connect("mongodb://localhost/tut1");
+
+mongoose.connect(config.database);
 let db = mongoose.connection;
 
 // Check connection
@@ -30,8 +36,32 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Session and Flash Middleware Configuration
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(flash());
+
 // Set Public Folder
 app.use(express.static("public"));
+
+
+// Messages Configuration
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+// Passport Configuration
+require('./config/passport')(passport);
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Home Route
 app.get("/", function(req, res) {
