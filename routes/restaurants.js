@@ -16,7 +16,9 @@ const multerConfig = {
       filename: function(req, file, next){
           console.log(file);
           const ext = file.mimetype.split('/')[1];
-          next(null, file.fieldname + '-' + Date.now() + '.'+ext);
+          var now = new Date();
+          var isoString = now.toISOString();
+          next(null, file.fieldname + '-' + isoString + '.'+ext);
         }
       }),   
       
@@ -96,12 +98,33 @@ router.post('/upload/:id', multer(multerConfig).array('restaurantImage',5), (req
 });
 
 //Delete image [DELETE]
-router.post("upload/delete", (req, res, next) => {
+router.post("/upload/delete/:id", (req, res, next) => {
   console.log("here 1: delete method called");
-  var id = req.params.id;
-  console.log("ID photo= " + id);
-  let query = { _id: req.params.id };
-  console.log("query " + query);
+  var param = req.params.id;
+  console.log("param = " + param);
+  var path = param.split('_')[0];
+  console.log("path= " + path);
+  var restaurant_id = param.split('_')[1];
+  console.log("rest ID = " + restaurant_id);
+  
+  let query = {_id: restaurant_id};
+
+  var image_path = "public/uploads/" + path;
+  console.log("image path =  " + image_path);
+  
+  Restaurant.findOneAndUpdate(query, { $pull: { restaurantImage: image_path  }}, function(err) {  
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log("updated photos");
+      fs.unlinkSync(image_path);
+      console.log("deleted file locally");
+      console.log("Redirecting you to .............." + "/restaurants/upload/" + restaurant_id);
+      res.redirect("/restaurants/upload/" + restaurant_id);
+    }
+  });
+
 
 });
 

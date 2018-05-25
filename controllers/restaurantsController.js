@@ -131,7 +131,7 @@ exports.upload = function(req, res) {
 //   });
 // };
 
-exports.delete_photo = function(req, res){
-  console.log("trying to delete photo");
-  let query = { _id: req.params.id };
-}
+// exports.delete_photo = function(req, res){
+//   console.log("trying to delete photo");
+//   let query = { _id: req.params.id };
+// }

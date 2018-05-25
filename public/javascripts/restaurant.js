@@ -109,11 +109,11 @@ $(document).ready(function() {
   //Display the restaurant image
   $(function() {
     var images = document.getElementsByClassName('resturant-image');
-    for(var i = 0 ; i<images.length; i++){
-     
+    for(var i = 0 ; i<images.length; i++){      
+      var name = images[i].getAttribute("name");
       var elem = document.createElement("img");
-        elem.setAttribute("class", "restaurant-pic")  
-        //elem.src = "/" +images[i].id.split('/')[2]; 
+        elem.setAttribute("class", "restaurant-pic") 
+        elem.setAttribute("name", name); 
         elem.setAttribute("src", "/" +images[i].id.split('/')[2])     
         elem.setAttribute("height", "200");
         elem.setAttribute("width", "250");
@@ -126,13 +126,23 @@ $(document).ready(function() {
     
     $target = $(e.target);
     const id = $target.attr("data-id");
+    const id2 = id.split('/')[2];
+
+    var name = $target.attr("name");
+
+    window.console.log("name = " + name);
+
+    var parameter = id2 + "_" + name;
+    window.console.log("param = " + parameter);
+   
+    window.console.log("id2=" + id2);
     window.console.log("delete this image " + id);
     var confirmation = confirm("Are you sure you want to delete this photo?");
     if (confirmation) {
       $.ajax({
         type: "POST",
-        url: "/restaurants/upload/delete/"+id,
-        data: id,
+        url: "/restaurants/upload/delete/"+parameter,
+        data: parameter,
         success: function(res) {
           console.log("Successs");
           window.location.href = "/";

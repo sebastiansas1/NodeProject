@@ -20,10 +20,11 @@ mixin restaurant_maximised(restaurant)
     .col-md-6.col-restaurant-title
       a.btn.btn-red.float-right.delete-restaurant(href='#', data-id=restaurant._id) Delete
       a.btn.btn-gray.float-right(href='/restaurants/edit/'+restaurant._id) Edit
-      span.btn.btn-success.float-right
+      a.btn.btn-success.float-right(href='/restaurants/upload/'+restaurant._id, data-id=restaurant._id) Manage photos 
         i.fas.fa-camera-retro
-        a.simple-link(href='/restaurants/upload/'+restaurant._id) Manage photos
-         
+     
+      
+        
       
   hr
   .row.restaurant-heading-1
@@ -46,14 +47,14 @@ mixin restaurant_maximised(restaurant)
     - if(restaurant.website)
       p.heading-2
         a.simple-link(href='http://'+restaurant.website.replace('http://',''))=restaurant.website.replace('http://','')
-  .row.restaurant-pictures
-    img.restaurant-pic(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="250px", height="200px",alt="restaurant picture")
-    img.restaurant-pic(src="https://mk0tainsights9mcv7wv.kinstacdn.com/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg", width="250px", height="200px",alt="restaurant picture")
-    img.restaurant-pic(src="http://www.quilon.co.uk/quilon/media/images/Square_396x396/Taj51_Quilon_Private_Dining_5_45366652_sq.jpg?width=396&height=396&ext=.jpg", width="250px", height="200px",alt="restaurant picture")
-    img.restaurant-pic(src="http://www.cityfortal.com/wp-content/uploads/2018/05/restaurants2.jpg", width="250px", height="200px",alt="restaurant picture")
+  //- .row.restaurant-pictures
+  //-   img.restaurant-pic(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="250px", height="200px",alt="restaurant picture")
+  //-   img.restaurant-pic(src="https://mk0tainsights9mcv7wv.kinstacdn.com/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg", width="250px", height="200px",alt="restaurant picture")
+  //-   img.restaurant-pic(src="http://www.quilon.co.uk/quilon/media/images/Square_396x396/Taj51_Quilon_Private_Dining_5_45366652_sq.jpg?width=396&height=396&ext=.jpg", width="250px", height="200px",alt="restaurant picture")
+  //-   img.restaurant-pic(src="http://www.cityfortal.com/wp-content/uploads/2018/05/restaurants2.jpg", width="250px", height="200px",alt="restaurant picture")
   .row.restaurant-pictures
     each val in restaurant.restaurantImage
-      .resturant-image(id="restaurant-image_"+val)
+      .resturant-image(id="restaurant-image_"+val, name=restaurant.id)
   .row
     br
   

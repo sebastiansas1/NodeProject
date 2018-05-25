@@ -9,21 +9,21 @@ block content
     br
 
     h1 #{title} 
-    p #{id}
-
-     .row.restaurant-pictures
-      each val in restaurant.restaurantImage
-        .resturant-image(id="restaurant-image_"+val)
-          a.btn.btn-red.float-right.delete-restaurantImage(href='#'+val, data-id=val) Delete
       
     hr
+    p Upload new photos
     form(action="/restaurants/upload/"+id, name="fileUploadForm", enctype='multipart/form-data', method="POST")
-      input(type='file', name='restaurantImage', multiple)
-      input(type='submit', value='Upload Photo', id="upload-photo")
-      
-    //- br
-    //- a.btn.btn-success.upload-photo(data-id=restaurant._id) Upload
-      
+      input(class="form-control",type='file', name='restaurantImage', multiple)
+      input(class="form-control",type='submit', value='Upload Photo', id="upload-photo")
+
+    .row
+      p Manage uploaded photos  
+      .row.restaurant-pictures
+
+        each val in restaurant.restaurantImage
+          .resturant-image(id="restaurant-image_"+val, name=id)
+            a.btn.btn-red.float-right.delete-restaurantImage(href='#'+val, data-id=val, name=id) Delete
+        
 
 
   
