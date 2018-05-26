@@ -9,15 +9,17 @@ block content
     +restaurant_info
 
     br
-
-    h2 Reviews
-
-    hr
-
     br
+    
+    .row.restaurant-title
+      .col-md-6.col-restaurant-title
+        h2 Reviews
+      .col-md-6.col-restaurant-title
+        a.btn.btn-purple.float-right(href=restaurant._id + "/reviews/add") Add Review   
+    hr
 
     +reviews
 
-    a.nav-link(href=restaurant._id + "/reviews/add") Add Review   
+    
 
     

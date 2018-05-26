@@ -33,8 +33,8 @@ mixin restaurant_info
     i.fas.fa-star.heading-1.icon
     i.fas.fa-star.heading-1.icon
     i.far.fa-star.heading-1.icon
-    p.heading-1 based on 213 Reviews | 
-    p.heading-1=restaurant.cuisine
+    p.heading-1.underlined #{reviews.length} reviews 
+    p.heading-1 |  #{restaurant.cuisine}
   .row.restaurant-heading-2
     i.fas.fa-map-marker-alt.heading-2.icon
     p.heading-2=restaurant.addressLine1 + ','
