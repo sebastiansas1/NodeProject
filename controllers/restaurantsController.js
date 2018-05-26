@@ -1,15 +1,16 @@
-// Bring in Restaurant model
+// Bring in Restaurant & Review Models
 let Restaurant = require("../models/restaurant");
+let Review = require("../models/review");
 
 // Setup Restaurant Method [for GET]
-exports.add = function(req, res) {
+exports.add = function (req, res) {
   res.render("restaurant/add", {
     title: "Add Restaurant"
   });
 };
 
 // Create Restaurant Method [for POST]
-exports.create = function(req, res) {
+exports.create = function (req, res) {
   let restaurant = new Restaurant();
   restaurant.name = req.body.name;
   restaurant.addressLine1 = req.body.addressLine1;
@@ -23,7 +24,7 @@ exports.create = function(req, res) {
   restaurant.cuisine = req.body.cuisine;
   restaurant.description = req.body.description;
 
-  restaurant.save(function(err) {
+  restaurant.save(function (err) {
     if (err) {
       console.log(err);
       return;
@@ -35,8 +36,8 @@ exports.create = function(req, res) {
 };
 
 // Edit Restaurant Method [for GET]
-exports.edit = function(req, res) {
-  Restaurant.findById(req.params.id, function(err, restaurant) {
+exports.edit = function (req, res) {
+  Restaurant.findById(req.params.id, function (err, restaurant) {
     res.render("restaurant/edit", {
       title: "Edit Restaurant",
       restaurant: restaurant
@@ -45,7 +46,7 @@ exports.edit = function(req, res) {
 };
 
 // Update Restaurant Method [for POST]
-exports.update = function(req, res) {
+exports.update = function (req, res) {
   let restaurant = {};
   restaurant.name = req.body.name;
   restaurant.addressLine1 = req.body.addressLine1;
@@ -58,10 +59,13 @@ exports.update = function(req, res) {
   restaurant.website = req.body.website;
   restaurant.cuisine = req.body.cuisine;
   restaurant.description = req.body.description;
+  console.log("HERE BRO! : " + req.params.id);
 
-  let query = { _id: req.params.id };
+  let query = {
+    _id: req.params.id
+  };
 
-  Restaurant.update(query, restaurant, function(err) {
+  Restaurant.update(query, restaurant, function (err) {
     if (err) {
       console.log(err);
       return;
@@ -72,28 +76,41 @@ exports.update = function(req, res) {
 };
 
 // Show Restaurant Method [for GET]
-exports.show = function(req, res) {
-  Restaurant.findById(req.params.id, function(err, restaurant) {
-    res.render("restaurant/show", {
-      restaurant: restaurant
+exports.show = function (req, res) {
+  Restaurant.findById(req.params.id, function (err, restaurant) {
+    var query = {
+      "restaurant_id": restaurant._id
+    };
+    Review.find(query, function (err, reviews) {
+      res.render("restaurant/show", {
+        restaurant: restaurant,
+        reviews: reviews
+      });
+      // res.end(req.params.id);
     });
-    res.end(req.params.id);
   });
 };
 
 // Show Restaurant through search Method [for GET]
-exports.display = function(req, res) {
-  Restaurant.findOne({ name: req.params.name }, function(err, restaurant) {
-    res.render("restaurant/show", {
-      restaurant: restaurant
+exports.display = function (req, res) {
+  Restaurant.findOne({
+    name: req.params.name
+  }, function (err, restaurant) {
+    var query = {
+      "restaurant_id": restaurant.id
+    };
+    Review.find(query, function (err, reviews) {
+      res.redirect('/restaurants/' + restaurant.id);
     });
   });
-};
+}
 
 // Delete Restaurant Method [for DELETE]
-exports.delete = function(req, res) {
-  let query = { _id: req.params.id };
-  Restaurant.remove(query, function(err) {
+exports.delete = function (req, res) {
+  let query = {
+    _id: req.params.id
+  };
+  Restaurant.remove(query, function (err) {
     if (err) {
       console.log(err);
     }
@@ -101,38 +118,17 @@ exports.delete = function(req, res) {
   });
 };
 
-exports.find = function(req, res) {
+exports.find = function (req, res) {
   var search = req.params.search;
-  var name = { name: new RegExp(search, "i") };
-  var city = { city: new RegExp(search, "i") };
-  Restaurant.find({ $or: [name, city] }, function(err, items) {
+  var name = {
+    name: new RegExp(search, "i")
+  };
+  var city = {
+    city: new RegExp(search, "i")
+  };
+  Restaurant.find({
+    $or: [name, city]
+  }, function (err, items) {
     res.jsonp(items);
   });
 };
-
-//
-exports.upload = function(req, res) {
-  Restaurant.findById(req.params.id, function(err, restaurant) {
-    res.render("restaurant/upload", {
-      title: "Upload Image for Restaurant",
-      id: req.params.id,
-      restaurant: restaurant
-    });
-  });
-};
-
-//
-// exports.photos = function(req, res) {
-//   console.log("reached photos controller, YAAY ");
-//   Restaurant.findById(req.params.id, function(err, restaurant) {
-//     res.render("restaurant/upload", {
-//       title: "Upload Image for Restaurant",
-//       restaurant: restaurant
-//     });
-//   });
-// };
-
-// exports.delete_photo = function(req, res){
-//   console.log("trying to delete photo");
-//   let query = { _id: req.params.id };
-// }

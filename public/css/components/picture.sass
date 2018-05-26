@@ -1,0 +1,44 @@
+@import "./variables"
+
+
+.picture-container
+  max-height: 35%
+  max-width: 100%
+  margin-bottom: 15px
+  margin-top: 15px
+
+.picture
+  height: 100%
+  width: 100%
+  border: 1px solid lightgray
+  border-radius: 7px
+
+.btn-pic
+  float: right
+  position: relative
+  cursor: pointer
+  padding: 5px
+  bottom: 99.5%
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0px
+  margin: 5px
+  width: 25px
+  height: 25px
+  line-height: 25px
+  border-radius: 50%
+  border: 0px
+  transition: 0.1s linear
+  i.fas.fa-times
+    transition: 0.1s linear
+    opacity: 0.5
+    font-size: 13px
+    color: black
+  &:hover
+    background-color: rgba(255, 255, 255, 0.9);
+    i.fas.fa-times
+      color: black
+      opacity: 1
+
+  &:focus
+    outline: none
+    color: black

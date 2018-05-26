@@ -71,9 +71,8 @@ $(document).ready(function() {
           url: "/restaurants/search_query/" + ui.item.value,
           type: "GET",
           success: function(res) {
-            // Map res values to fiedl label and value
+            // Map res values to field label and value
             window.location.href = "/restaurants/search_query/" + ui.item.value;
-    
           },
           error: function(err) {
             alert("Got to sleep");

@@ -1,0 +1,22 @@
+mixin picture
+    
+  .row.restaurant-pictures
+      each image in restaurant.restaurantImage
+        .col-md-6.picture-container
+          .picture-container
+            img.picture(src="/"+image)
+
+  .row
+    br
+
+
+mixin picture_manager
+  
+  .row.restaurant-pictures
+    each image in restaurant.restaurantImage
+      .col-md-6.picture-container
+        img.picture(src="/"+image)
+        button.btn-pic
+          i.fas.fa-times.delete-picture(data-id=image, name=restaurant._id)
+  .row
+    br

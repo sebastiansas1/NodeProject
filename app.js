@@ -27,7 +27,6 @@ const app = express();
 
 // Bring in Models
 let Restaurant = require("./models/restaurant");
-let Review = require("./models/review")
 
 // Load View Engine
 app.set("views", path.join(__dirname, "views"));
@@ -48,6 +47,7 @@ app.use(flash());
 
 // Set Public Folder
 app.use(express.static("public"));
+app.use('/static', express.static('public'));
 
 
 // Messages Configuration
@@ -95,21 +95,22 @@ app.get("/search/:search_query", function(req, res) {
   });
 });
 
-// Routes requires
+// Require All Routes
 let restaurants = require("./routes/restaurants");
-let users = require("./routes/users");
 let reviews = require("./routes/reviews", {mergeParams: true});
+let uploads = require("./routes/uploads", {mergeParams: true});
+let users = require("./routes/users");
 
 // Controller requires
 let autocomplete = require("./controllers/restaurantsController");
 
 // Routes definitions
 app.use("/restaurants", restaurants);
+restaurants.use('/:restaurant_id/reviews', reviews);
+restaurants.use('/:restaurant_id/upload', uploads);
 app.get("/autocomplete/:search", autocomplete.find);
 app.use("/users", users);
-restaurants.use('/:restaurant_id/reviews', reviews);
 
-app.use(express.static("public/uploads"));
 // Start Server
 app.listen(3000, function() {
   console.log("Server started on port 3000");

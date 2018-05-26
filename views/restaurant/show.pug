@@ -1,10 +1,23 @@
 extends ../panels/layout
 include ../components/restaurant
+include ../components/review
   
 block content
 
   .container.content
 
-    +restaurant_maximised(restaurant)
-    a.nav-link(href=restaurant._id + "/reviews/add") Add Review
+    +restaurant_info
 
+    br
+
+    h2 Reviews
+
+    hr
+
+    br
+
+    +reviews
+
+    a.nav-link(href=restaurant._id + "/reviews/add") Add Review   
+
+    

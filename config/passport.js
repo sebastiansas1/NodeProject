@@ -29,7 +29,7 @@ module.exports = function (passport) {
         bcrypt.compare(password, user.password, function (err, isMatch) {
           if (err) throw err;
           if (isMatch) {
-            console.log('YOU MAY LOG IN BIATCH');
+            console.log('YOU MAY LOG IN BIATCH');      
             return done(null, user);
           } else {
             console.log('WRONG PASSWORD');

@@ -2,11 +2,11 @@ const bcrypt = require("bcryptjs");
 // Bring in User model
 let User = require("../models/user");
 
-exports.signup = function(req, res) {
+exports.signup = function (req, res) {
   res.render("user/signup");
 };
 
-exports.register = function(req, res) {
+exports.register = function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
   const c_password = req.body.c_password;
@@ -17,13 +17,13 @@ exports.register = function(req, res) {
   });
 
   // Encrypt passwords with hash
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(user.password, salt, function(err, hash) {
+  bcrypt.genSalt(10, function (err, salt) {
+    bcrypt.hash(user.password, salt, function (err, hash) {
       if (err) {
         console.log(err);
       } else {
         user.password = hash;
-        user.save(function(err) {
+        user.save(function (err) {
           if (err) {
             if (err.code != 11000) {
               res.status(500).end("ERROR: " + err.code.toString());
@@ -44,6 +44,6 @@ exports.register = function(req, res) {
   });
 };
 
-exports.login = function(req, res) {
+exports.login = function (req, res) {
   res.render("user/login");
 };

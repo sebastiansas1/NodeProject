@@ -1,31 +1,31 @@
-mixin restaurants_miniature(restaurant)
+include ./picture
+
+mixin restaurants
 
   each restaurant in restaurants
     li.list-group-item
       .row
         .col-md-2.col-restaurant-picture
           //- Here Goes Picture of Restaurant
-          img(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="100%",alt="restaurant picture")
+          img(src="/"+restaurant.restaurantImage[0] height="70px" width="100%" alt="restaurant picture" style="margin-top: 15px")
         .col-md-10.col-restaurant-info
           //- Information About Restaurant
           a(href="/restaurants/"+restaurant._id)
             h4=restaurant.name
           p=restaurant.cuisine
 
-mixin restaurant_maximised(restaurant)
+mixin restaurant_info
 
   .row.restaurant-title
     .col-md-6.col-restaurant-title
       h1=restaurant.name
     .col-md-6.col-restaurant-title
-      a.btn.btn-red.float-right.delete-restaurant(href='#', data-id=restaurant._id) Delete
-      a.btn.btn-gray.float-right(href='/restaurants/edit/'+restaurant._id) Edit
-      a.btn.btn-success.float-right(href='/restaurants/upload/'+restaurant._id, data-id=restaurant._id) Manage photos   
+      a.btn.btn-red.float-right.delete-restaurant(href='#' data-id=restaurant._id) Delete
+      a.btn.btn-gray.float-right(href=restaurant._id + '/edit' ) Edit
+      a.btn.btn-success.float-right(href=restaurant._id + "/upload" data-id=restaurant._id) Manage photos   
         i.fas.fa-camera-retro
      
-      
-        
-      
+           
   hr
   .row.restaurant-heading-1
     i.fas.fa-star.heading-1.icon
@@ -46,18 +46,10 @@ mixin restaurant_maximised(restaurant)
     i.fas.fa-laptop.heading-2.icon-web
     - if(restaurant.website)
       p.heading-2
-        a.simple-link(href='http://'+restaurant.website.replace('http://',''))=restaurant.website.replace('http://','')
-  //- .row.restaurant-pictures
-  //-   img.restaurant-pic(src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", width="250px", height="200px",alt="restaurant picture")
-  //-   img.restaurant-pic(src="https://mk0tainsights9mcv7wv.kinstacdn.com/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg", width="250px", height="200px",alt="restaurant picture")
-  //-   img.restaurant-pic(src="http://www.quilon.co.uk/quilon/media/images/Square_396x396/Taj51_Quilon_Private_Dining_5_45366652_sq.jpg?width=396&height=396&ext=.jpg", width="250px", height="200px",alt="restaurant picture")
-  //-   img.restaurant-pic(src="http://www.cityfortal.com/wp-content/uploads/2018/05/restaurants2.jpg", width="250px", height="200px",alt="restaurant picture")
-  .row.restaurant-pictures
-    each val in restaurant.restaurantImage
-      .resturant-image(id="restaurant-image_"+val, name=restaurant.id)
-  .row
-    br
-  
+        a.simple-link(href='http://' + restaurant.website.replace('http://',''))=restaurant.website.replace('http://','')
+
+  +picture
+
   p.description= restaurant.description
  
     

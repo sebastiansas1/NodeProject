@@ -9,17 +9,17 @@ block content
 
     form.edit-form
       //- Form Group with parameters (LabelName, ID, input, type, value)
-      +form_group("Name", "name", "input", "text", restaurant.name)
-      +form_group("Address Line 1", "addressLine1", "input", "text", restaurant.addressLine1)
-      +form_group("Address Line 2", "addressLine2", "input", "text", restaurant.addressLine2)
-      +form_group("City", "city", "input", "text", restaurant.city)
-      +form_group("County", "county","input", "text", restaurant.county)
-      +form_group("Country", "country","input", "text", restaurant.country)
-      +form_group("Postcode", "postcode","input", "text", restaurant.postcode)
-      +form_group("Phone", "phoneNumber","input", "number", restaurant.phoneNumber)
-      +form_group("Website", "website","input", "text", restaurant.website)
-      +form_group("Cuisine", "cuisine", "input", "text", restaurant.cuisine[0])
-      +form_group("Description", "description","input", "text", restaurant.description)
+      +form_group("Name", "name", "input", "text", restaurant.name, "restaurant-form-group")
+      +form_group("Address Line 1", "addressLine1", "input", "text", restaurant.addressLine1, "restaurant-form-group")
+      +form_group("Address Line 2", "addressLine2", "input", "text", restaurant.addressLine2, "restaurant-form-group")
+      +form_group("City", "city", "input", "text", restaurant.city, "restaurant-form-group")
+      +form_group("County", "county","input", "text", restaurant.county, "restaurant-form-group")
+      +form_group("Country", "country","input", "text", restaurant.country, "restaurant-form-group")
+      +form_group("Postcode", "postcode","input", "text", restaurant.postcode, "restaurant-form-group")
+      +form_group("Phone", "phoneNumber","input", "number", restaurant.phoneNumber, "restaurant-form-group")
+      +form_group("Website", "website","input", "text", restaurant.website, "restaurant-form-group")
+      +form_group("Cuisine", "cuisine", "input", "text", restaurant.cuisine[0], "restaurant-form-group")
+      +form_group("Description", "description","input", "text", restaurant.description, "restaurant-form-group")
       br
       a.btn.btn-purple.edit-restaurant(data-id=restaurant._id) Save
       
