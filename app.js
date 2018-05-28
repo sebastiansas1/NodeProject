@@ -8,6 +8,9 @@ const session = require('express-session');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const config = require('./config/db');
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyDWb2eLKaF_tyP9hsrTUZ3_CsOsXSoXXNg'
+});
 
 
 mongoose.connect(config.database);

@@ -1,5 +1,6 @@
 include ./picture
 
+
 mixin restaurants
 
   each restaurant in restaurants
@@ -28,11 +29,17 @@ mixin restaurant_info
            
   hr
   .row.restaurant-heading-1
-    i.fas.fa-star.heading-1.icon
-    i.fas.fa-star.heading-1.icon
-    i.fas.fa-star.heading-1.icon
-    i.fas.fa-star.heading-1.icon
-    i.far.fa-star.heading-1.icon
+    - var sum = 0;
+    each review in reviews
+     -sum=sum+review.stars;
+    p=sum/reviews.length
+    p / Rounded = 
+    p=Math.round(sum/reviews.length, 10)
+    -var n = 0;
+    while n<Math.round(sum/reviews.length, 10)
+      i.fas.fa-star.heading-1.icon
+      - n++
+
     p.heading-1.underlined #{reviews.length} reviews 
     p.heading-1 |  #{restaurant.cuisine}
   .row.restaurant-heading-2
@@ -51,5 +58,11 @@ mixin restaurant_info
   +picture
 
   p.description= restaurant.description
+
+  //- .row(style="width: 100%; display:flex;")
+  //-   p here goes the map
+  //-   #map(style="width: 100%; height: 500px;")
+  //-   #pano(style= "width: 100%; height: 500px; ")
+
  
     
