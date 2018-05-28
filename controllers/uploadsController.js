@@ -37,7 +37,7 @@ exports.upload = function (req, res, next) {
 
   Restaurant.findOneAndUpdate(query, {
     $push: {
-      restaurantImage: path_image
+      image: path_image
     }
   }, function (err) {
     if (err) {
@@ -62,7 +62,7 @@ exports.delete = function (req, res, next) {
 
   Restaurant.findOneAndUpdate(query, {
     $pull: {
-      restaurantImage: db_image_path
+      image: db_image_path
     }
   }, function (err) {
     if (err) {

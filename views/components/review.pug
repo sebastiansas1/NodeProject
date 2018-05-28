@@ -1,10 +1,23 @@
 mixin reviews
+ 
   each review in reviews
+    
     - var n = 0;
       while n < review.stars
         i.fas.fa-star.heading-1.icon
         - n++
+      button.btn-pic
+        i.fas.fa-times.delete-review(data-id=review, name=review._id, restaurant_id=review.restaurant_id)
     h5=review.title
     p=review.comment
+    
     br
-  
+
+    .row.restaurant-pictures
+      each image in review.image
+        .col-md-6.picture-container
+          .picture-container
+            img.picture(src="/"+image)
+    hr
+
+  script(src='/javascripts/review.js')

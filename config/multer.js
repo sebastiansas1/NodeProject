@@ -16,7 +16,7 @@ const upload = multer({
   fileFilter: function (req, file, callback) {
     validateFile(file, callback);
   }
-}).single('restaurantImage');
+}).single('image');
 
 var validateFile = function (file, cb) {
   allowedFileTypes = /jpeg|jpg|png|gif/;
@@ -65,4 +65,4 @@ const multerConfig = {
   }
 };
 
-exports.configuration = multer(multerConfig).array('restaurantImage', 5);
+exports.configuration = multer(multerConfig).array('image', 5);

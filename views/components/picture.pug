@@ -1,7 +1,7 @@
 mixin picture
     
   .row.restaurant-pictures
-      each image in restaurant.restaurantImage
+      each image in restaurant.image
         .col-md-6.picture-container
           .picture-container
             img.picture(src="/"+image)
@@ -13,10 +13,14 @@ mixin picture
 mixin picture_manager
   
   .row.restaurant-pictures
-    each image in restaurant.restaurantImage
+    each image in restaurant.image
       .col-md-6.picture-container
         img.picture(src="/"+image)
         button.btn-pic
           i.fas.fa-times.delete-picture(data-id=image, name=restaurant._id)
   .row
     br
+
+ 
+
+

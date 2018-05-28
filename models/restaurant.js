@@ -43,7 +43,7 @@ const restaurantSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  restaurantImage: 
+  image: 
   [{
     type: String
   }]

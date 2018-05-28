@@ -78,8 +78,10 @@ exports.update = function (req, res) {
 // Show Restaurant Method [for GET]
 exports.show = function (req, res) {
   Restaurant.findById(req.params.id, function (err, restaurant) {
-    var query = {
-      "restaurant_id": restaurant._id
+    if(req.params.id != null){
+      var query = {
+        "restaurant_id": restaurant._id
+      };
     };
     Review.find(query, function (err, reviews) {
       res.render("restaurant/show", {

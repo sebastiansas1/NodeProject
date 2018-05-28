@@ -17,7 +17,11 @@ const reviewSchema = mongoose.Schema({
 
   restaurant_id: {
     type: String,
-  }
+  },
+
+  image: [{
+    type: String
+  }]
   
 });
 
