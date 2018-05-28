@@ -33,7 +33,7 @@ $(document).ready(function() {
       }),
       success: function(res) {
         console.log("Success");
-        window.location.href = "/";
+        // window.location.href = "/";
       },
       error: function(err) {
         console.log("Error");

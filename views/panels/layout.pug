@@ -1,3 +1,6 @@
+include ./flash
+
+
 html(lang="en")
 
   head
@@ -24,7 +27,6 @@ html(lang="en")
           a.nav-link(href='/users/login') Log In
 
     main.middle-section
-      != messages('flash', locals)
       block content
       br
     
@@ -34,7 +36,7 @@ html(lang="en")
 
   
   script(src='/bower_components/jquery-ui/jquery-ui.js')
-  script(src='/javascripts/restaurant.js')  
+  //- script(src='/javascripts/restaurant.js')  
   script(src='/javascripts/search.js')
   //- script(src='/javascripts/registration.js')
   //- script(src='/javascripts/login.js')

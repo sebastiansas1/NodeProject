@@ -27,10 +27,13 @@ exports.create = function (req, res) {
   restaurant.save(function (err) {
     if (err) {
       console.log(err);
-      return;
+      // req.flash('error', 'Error!');
+      res.render('restaurant/add');
+      // return;
     } else {
-      req.flash('success', 'Restaurant Added!');
-      res.sendStatus(200);
+      // req.flash('success', 'Restaurant Added!');
+      // res.redirect('/');
+      // res.sendStatus(200);
     }
   });
 };

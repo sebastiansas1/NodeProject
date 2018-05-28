@@ -7,7 +7,7 @@ block content
 
     h1 #{title}
 
-    form
+    form(method="POST", action="/restaurants/add")
       //- Form Group with parameters (LabelName, ID, input, type, value)
       +form_group("Name", "name", "input", "text", "", "restaurant-form-group")
       +form_group("Address Line 1", "addressLine1", "input", "text", "", "restaurant-form-group")
@@ -20,5 +20,6 @@ block content
       +form_group("Website", "website","input", "text", "", "restaurant-form-group")
       +form_group("Cuisine", "cuisine","input", "text", "", "restaurant-form-group") 
       +form_group("Description", "description","textarea", "", "", "restaurant-form-group")
-      a.btn.btn-purple.create-restaurant Save
+      //- +form_group("SUBMIT", "description","input", "submit", "", "restaurant-form-group")
+      button.btn.btn-purple.create-restaurant(type="submit") Save
       

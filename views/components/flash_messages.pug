@@ -1,5 +1,4 @@
-mixin flash-message(type)
-  .message
-    div(class="alert alert-" + type)
-      p Message
-  
+.messages
+  each type in Object.keys(messages)
+    each message in messages[type]
+      div(class="alert alert-" + type) #{message}

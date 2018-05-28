@@ -2,10 +2,11 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
-const expressValidator = require('express-validator');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 const config = require('./config/db');
 
 
@@ -36,13 +37,19 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Session and Flash Middleware Configuration
+// // Session and Flash Middleware Configuration
+// app.configure(function() {
+//   app.use(express.cookieParser('keyboard cat'));
+//   app.use(express.session({ cookie: { maxAge: 60000 }}));
+//   app.use(flash());
+// });
+
+app.use(cookieParser());
 app.use(session({
   secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true
 }));
-
 app.use(flash());
 
 // Set Public Folder
