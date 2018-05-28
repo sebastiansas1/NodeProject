@@ -37,13 +37,6 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// // Session and Flash Middleware Configuration
-// app.configure(function() {
-//   app.use(express.cookieParser('keyboard cat'));
-//   app.use(express.session({ cookie: { maxAge: 60000 }}));
-//   app.use(flash());
-// });
-
 app.use(cookieParser());
 app.use(session({
   secret: 'keyboard cat',

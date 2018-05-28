@@ -5,21 +5,48 @@ block content
 
   .container.content
 
+    != messages('panels/flash', locals)
+
     h1 #{title}
 
     form(method="POST", action="/restaurants/add")
-      //- Form Group with parameters (LabelName, ID, input, type, value)
-      +form_group("Name", "name", "input", "text", "", "restaurant-form-group")
-      +form_group("Address Line 1", "addressLine1", "input", "text", "", "restaurant-form-group")
-      +form_group("Address Line 2", "addressLine2", "input", "text", "", "restaurant-form-group")
-      +form_group("City", "city", "input", "text", "", "restaurant-form-group")
-      +form_group("County", "county","input", "text", "", "restaurant-form-group")
-      +form_group("Country", "country","input", "text", "", "restaurant-form-group")
-      +form_group("Postcode", "postcode","input", "text", "", "restaurant-form-group")
-      +form_group("Phone", "phoneNumber","input", "number", "", "restaurant-form-group")
-      +form_group("Website", "website","input", "text", "", "restaurant-form-group")
-      +form_group("Cuisine", "cuisine","input", "text", "", "restaurant-form-group") 
-      +form_group("Description", "description","textarea", "", "", "restaurant-form-group")
-      //- +form_group("SUBMIT", "description","input", "submit", "", "restaurant-form-group")
-      button.btn.btn-purple.create-restaurant(type="submit") Save
       
+      #form-group
+        label Name:
+        input.form-control(name="name", type="text")
+      #form-group
+        label Address Line 1:
+        input.form-control(name="addressLine1", type="text")
+      #form-group
+        label Address Line 2:
+        input.form-control(name="addressLine2", type="text")
+      #form-group
+        label City:
+        input.form-control(name="city", type="text")
+      #form-group
+        label County:
+        input.form-control(name="county", type="text")
+      #form-group
+        label Country:
+        input.form-control(name="country", type="text")
+      #form-group
+        label Postcode:
+        input.form-control(name="postcode", type="text")
+      #form-group
+        label Phone:
+        input.form-control(name="phone", type="number")
+      #form-group
+        label Website:
+        input.form-control(name="website", type="text")
+      #form-group
+        label Cuisine:
+        input.form-control(name="cuisine", type="text")
+      #form-group
+        label Description:
+        textarea.form-control(name="description")
+
+      input.btn.btn-purple.create-restaurant(type="submit")
+
+      
+    
+      //- +form_group("SUBMIT", "description","input", "submit", "", "restaurant-form-group")

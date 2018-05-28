@@ -5,7 +5,8 @@ let Review = require("../models/review");
 // Setup Restaurant Method [for GET]
 exports.add = function (req, res) {
   res.render("restaurant/add", {
-    title: "Add Restaurant"
+    title: "Add Restaurant",
+    message: req.flash('message')
   });
 };
 
@@ -26,14 +27,11 @@ exports.create = function (req, res) {
 
   restaurant.save(function (err) {
     if (err) {
-      console.log(err);
-      // req.flash('error', 'Error!');
-      res.render('restaurant/add');
-      // return;
+      req.flash('danger', 'Fields Required!');
+      res.render('restaurant/add', {message: req.flash('message')});
     } else {
-      // req.flash('success', 'Restaurant Added!');
-      // res.redirect('/');
-      // res.sendStatus(200);
+      req.flash('success', 'Restaurant Added!');
+      res.redirect('/');
     }
   });
 };
