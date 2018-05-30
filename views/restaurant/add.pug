@@ -5,48 +5,45 @@ block content
 
   .container.content
 
-    != messages('panels/flash', locals)
+    .col-md-10.col-md-offset-6
 
-    h1 #{title}
+      != messages('panels/flash', locals)
 
-    form(method="POST", action="/restaurants/add")
-      
-      #form-group
-        label Name:
-        input.form-control(name="name", type="text")
-      #form-group
-        label Address Line 1:
-        input.form-control(name="addressLine1", type="text")
-      #form-group
-        label Address Line 2:
-        input.form-control(name="addressLine2", type="text")
-      #form-group
-        label City:
-        input.form-control(name="city", type="text")
-      #form-group
-        label County:
-        input.form-control(name="county", type="text")
-      #form-group
-        label Country:
-        input.form-control(name="country", type="text")
-      #form-group
-        label Postcode:
-        input.form-control(name="postcode", type="text")
-      #form-group
-        label Phone:
-        input.form-control(name="phone", type="number")
-      #form-group
-        label Website:
-        input.form-control(name="website", type="text")
-      #form-group
-        label Cuisine:
-        input.form-control(name="cuisine", type="text")
-      #form-group
-        label Description:
-        textarea.form-control(name="description")
+      h1.title #{title}
 
-      input.btn.btn-purple.create-restaurant(type="submit")
+      form.create-form(id='croco')
+        
+        //- Form Group with parameters form_group(label, id, input, input_type, value, form_group_name)
+        h4.form-label Name
+        +form_group("Name", "name", "input", "text", "", "restaurant-form-group")
+        h4.form-label Address
+        +form_group("Address Line 1", "addressLine1", "input", "text", "", "restaurant-form-group")
+        +form_group("Address Line 2", "addressLine2", "input", "text", "", "restaurant-form-group")
+        #form-group(class="restaurant-form-group")
+          span.compressed
+            input.form-control(id="city", type="text", value="", placeholder="eg. Sheffield")
+            label.form-label City
+          span.compressed
+            input.form-control(id="county", type="text", value="")
+            label.form-label County
+        #form-group(class="restaurant-form-group")
+          span.compressed
+            input.form-control(id="country", type="text", value="")
+            label.form-label Country
+          span.compressed
+            input.form-control(id="postcode", type="text", value="", placeholder="eg. S11 3HA")
+            label.form-label Postcode
+        h4.form-label Contact
+        #form-group(class="restaurant-form-group")
+          span.compressed
+            input.form-control(id="phoneNumber", type="number", value="", placeholder="eg. 7458 33241")
+            label.form-label Phone
+          span.compressed
+            input.form-control(id="website", type="text", value="", placeholder="eg. www.restaurant.co.uk")
+            label.form-label Website
+        h4.form-label Details
+        +form_group("Cuisine", "cuisine", "input", "text", "", "restaurant-form-group")
+        +form_group("Description", "description","textarea", "", "", "restaurant-form-group")
+        br
 
-      
-    
-      //- +form_group("SUBMIT", "description","input", "submit", "", "restaurant-form-group")
+        button.btn.btn-purple.create-restaurant(type="submit") Create

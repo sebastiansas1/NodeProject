@@ -28,10 +28,11 @@ exports.create = function (req, res) {
   restaurant.save(function (err) {
     if (err) {
       req.flash('danger', 'Fields Required!');
-      res.render('restaurant/add', {message: req.flash('message')});
+      return res.status(200).send({result: 'fields_missing', message: req.flash('message')});
+      
     } else {
       req.flash('success', 'Restaurant Added!');
-      res.redirect('/');
+      return res.status(200).send({result: 'redirect', url:'/', message: req.flash('message')});
     }
   });
 };
@@ -68,10 +69,11 @@ exports.update = function (req, res) {
 
   Restaurant.update(query, restaurant, function (err) {
     if (err) {
-      console.log(err);
-      return;
+      req.flash('danger', 'Fields Required!');
+      return res.status(200).send({result: 'fields_missing', message: req.flash('message')});
     } else {
-      res.redirect("/restaurants/" + req.params.id);
+      req.flash('success', 'Restaurant Successfully modified!');
+      return res.status(200).send({result: 'redirect', url:'/restaurants/'+req.params.id, message: req.flash('message')});
     }
   });
 };
@@ -87,7 +89,8 @@ exports.show = function (req, res) {
     Review.find(query, function (err, reviews) {
       res.render("restaurant/show", {
         restaurant: restaurant,
-        reviews: reviews
+        reviews: reviews,
+        message: req.flash('message')
       });
       // res.end(req.params.id);
     });

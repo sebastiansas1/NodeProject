@@ -8,18 +8,49 @@ block content
     h1 #{title}
 
     form.edit-form
-      //- Form Group with parameters (LabelName, ID, input, type, value)
+    
+      //- Form Group with parameters form_group(label, id, input, input_type, value, form_group_name)
+      h4.form-label Name
       +form_group("Name", "name", "input", "text", restaurant.name, "restaurant-form-group")
+      h4.form-label Address
       +form_group("Address Line 1", "addressLine1", "input", "text", restaurant.addressLine1, "restaurant-form-group")
       +form_group("Address Line 2", "addressLine2", "input", "text", restaurant.addressLine2, "restaurant-form-group")
-      +form_group("City", "city", "input", "text", restaurant.city, "restaurant-form-group")
-      +form_group("County", "county","input", "text", restaurant.county, "restaurant-form-group")
-      +form_group("Country", "country","input", "text", restaurant.country, "restaurant-form-group")
-      +form_group("Postcode", "postcode","input", "text", restaurant.postcode, "restaurant-form-group")
-      +form_group("Phone", "phoneNumber","input", "number", restaurant.phoneNumber, "restaurant-form-group")
-      +form_group("Website", "website","input", "text", restaurant.website, "restaurant-form-group")
+      #form-group(class="restaurant-form-group")
+        span.compressed
+          input.form-control(id="city", type="text", value=restaurant.city)
+          label.form-label City
+        span.compressed
+          input.form-control(id="county", type="text", value=restaurant.county)
+          label.form-label County
+      #form-group(class="restaurant-form-group")
+        span.compressed
+          input.form-control(id="country", type="text", value=restaurant.country)
+          label.form-label Country
+        span.compressed
+          input.form-control(id="postcode", type="text", value=restaurant.postcode)
+          label.form-label Postcode
+      h4.form-label Contact
+      #form-group(class="restaurant-form-group")
+        span.compressed
+          input.form-control(id="phoneNumber", type="number", value=restaurant.phoneNumber)
+          label.form-label Phone
+        span.compressed
+          input.form-control(id="website", type="text", value=restaurant.website)
+          label.form-label Website
+      h4.form-label Details
       +form_group("Cuisine", "cuisine", "input", "text", restaurant.cuisine[0], "restaurant-form-group")
       +form_group("Description", "description","input", "text", restaurant.description, "restaurant-form-group")
       br
-      a.btn.btn-purple.edit-restaurant(data-id=restaurant._id) Save
+      //- +form_group("Name", "name", "input", "text", restaurant.name, "restaurant-form-group")
+      //- +form_group("Address Line 1", "addressLine1", "input", "text", restaurant.addressLine1, "restaurant-form-group")
+      //- +form_group("Address Line 2", "addressLine2", "input", "text", restaurant.addressLine2, "restaurant-form-group")
+      //- +form_group("City", "city", "input", "text", restaurant.city, "restaurant-form-group")
+      //- +form_group("County", "county","input", "text", restaurant.county, "restaurant-form-group")
+      //- +form_group("Country", "country","input", "text", restaurant.country, "restaurant-form-group")
+      //- +form_group("Postcode", "postcode","input", "text", restaurant.postcode, "restaurant-form-group")
+      //- +form_group("Phone", "phoneNumber","input", "number", restaurant.phoneNumber, "restaurant-form-group")
+      //- +form_group("Website", "website","input", "text", restaurant.website, "restaurant-form-group")
+      //- +form_group("Cuisine", "cuisine", "input", "text", restaurant.cuisine[0], "restaurant-form-group")
+      //- +form_group("Description", "description","input", "text", restaurant.description, "restaurant-form-group")
+      button.btn.btn-purple.edit-restaurant(type="submit", data-id=restaurant._id) Save
       
