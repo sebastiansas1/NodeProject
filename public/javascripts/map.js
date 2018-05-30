@@ -3,8 +3,6 @@ $(document).ready(function(){
 
 });
 
-
-
 function initMap(){
  
   var location = new google.maps.LatLng(53.3811, -1.4701);
@@ -13,6 +11,12 @@ function initMap(){
   
   var infoWindow = new google.maps.InfoWindow;
 
+  var map = new google.maps.Map(document.getElementById('map'),{
+    zoom: 15,
+    center: location,
+    mapTypeId: 'roadmap'
+  })
+
    // Try HTML5 geolocation.
    if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -20,11 +24,12 @@ function initMap(){
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-
+      
       infoWindow.setPosition(pos);
       infoWindow.setContent('You are here');
       infoWindow.open(map);
       map.setCenter(pos);
+     
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -33,15 +38,10 @@ function initMap(){
     handleLocationError(false, infoWindow, map.getCenter());
   }
 
-
-  var map = new google.maps.Map(document.getElementById('map'),{
-    zoom: 18,
-    center: location,
-    mapTypeId: 'roadmap'
-  })
-
   geocodeAddress(geocode, map);
 };
+
+
 
 function geocodeAddress(geocoder, resultsMap) {
   var address;
@@ -69,65 +69,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: Your browser doesn\'t support geolocation.');
   infoWindow.open(map);
 }
-
-// $(document).on("ready page:load", loadMap);
-
-// function loadMap () {
-
-//     var map;
-//     var EpiGenesys = new google.maps.LatLng(53.38268939075736, -1.4710334784347197);
-
-//     var panoramaOptions = {
-//         position: EpiGenesys,
-//         pov: {
-//           heading: 4,
-//           pitch: 10
-//         }
-//     };
-
-//     map = new google.maps.Map(document.getElementById('map'), {
-//         zoom: 18,
-//         center: EpiGenesys,
-//         mapTypeId: 'roadmap'
-//     });
-
-//     var marker = new google.maps.Marker({
-//         position: EpiGenesys,
-//         map: map,
-//         title: 'EpiGenesys'
-//       });
-    
-// }
-
-// function initialize() {
-//     var EpiGenesys = new google.maps.LatLng(53.38268939075736, -1.4710334784347377);
-
-  
-//     var mapOptions = {
-//       center: EpiGenesys,
-//       zoom: 17
-//     };
-//     var map = new google.maps.Map(
-//       document.getElementById('map'), mapOptions);
-//     var marker1 = new google.maps.Marker({
-//       position: EpiGenesys,
-//       map: map,
-//       title: 'Entrance'
-//     });
-//     var panoramaOptions = {
-//       position: EpiGenesys,
-//       pov: {
-//         heading: 272,
-//         pitch: -2
-//       }
-//     };
-//     var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
-//     var marker2 = new google.maps.Marker({
-//       position: EpiGenesys,
-//       map: panorama,
-//       title: 'Entrance'
-//     });
-//     map.setStreetView(panorama);
-//   }
-  
-  

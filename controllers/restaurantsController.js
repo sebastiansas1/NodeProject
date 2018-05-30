@@ -132,8 +132,11 @@ exports.find = function (req, res) {
   var city = {
     city: new RegExp(search, "i")
   };
+  var cuisine = {
+    cuisine: new RegExp(search, "i")
+  };
   Restaurant.find({
-    $or: [name, city]
+    $or: [name, city, cuisine]
   }, function (err, items) {
     res.jsonp(items);
   });
