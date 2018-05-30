@@ -133,20 +133,4 @@ $(document).ready(function() {
       });
     }
   });
-
-  //Display the restaurant image
-  // $(function() {
-  //   var images = document.getElementsByClassName('resturant-image');
-  //   for(var i = 0 ; i<images.length; i++){      
-  //     var name = images[i].getAttribute("name");
-  //     var elem = document.createElement("img");
-  //       elem.setAttribute("class", "restaurant-pic") 
-  //       elem.setAttribute("name", name); 
-  //       elem.setAttribute("src", "/" +images[i].id.split('/')[2])     
-  //       elem.setAttribute("height", "200");
-  //       elem.setAttribute("width", "250");
-  //       elem.setAttribute("alt", "Restaurant Image");
-  //       images[i].appendChild(elem);
-  //   }
-  // });
 });

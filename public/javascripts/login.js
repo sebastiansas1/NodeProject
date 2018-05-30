@@ -41,16 +41,7 @@ $(document).ready(function() {
         },
         // Invalid form field values on serverside
         error: function(err) {
-          var error = err.responseText;
-          if (error == "DB_DUPLICATE_KEY") {
-            // Duplicate email, account probably exists
-            $(".flash-box").text("Account already exists with email: " + email);
-            $("#flash-message").css("visibility", "visible");
-            $("#email").css("border", "1px solid #e01f3e");
-          } else {
-            // Unknown errors will be displayed on a JavaScript
-            alert("HHHHH: " + JSON.stringify(err));
-          }
+          console.log(err);
         }
       });
     }
@@ -85,6 +76,7 @@ function validateEmail(email) {
         return true;
       } else {
         // Email missing . char
+        $("#flash-message").css("visibility", "visible");
         return 'Email format invalid: should contain "." after "@" symbol';
       }
     } else {

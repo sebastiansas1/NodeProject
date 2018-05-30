@@ -13,6 +13,7 @@ module.exports = function (passport) {
     },
 
     function (email, password, done) {
+      
 
       var query = {
         email: email
@@ -22,6 +23,7 @@ module.exports = function (passport) {
         if (err) throw err;
         if (!user) {
           console.log('NO USER FOUND');
+          // req.flash('alert', 'No user Found!');
           return done(null, false, {
             message: 'No user found!'
           });
@@ -34,11 +36,13 @@ module.exports = function (passport) {
             // req.flash('success', 'Welcome back ' + email);
             // return res.status(200).send({result: 'redirect', url:'/', message: req.flash('message')});
             console.log('LOGGED IN!');
+            // done.flash('success', 'Welcome Back!');
             return done(null, user, {
-              message: 'Welcome back ' + user.username
+              message: 'Welcome back ' + user.email
             });
           } else {
             console.log('WRONG PASSWORD');
+            // req.flash('alert', 'Wrong Password');
             return done(null, false, {
               message: 'Wrong password!'
             });
@@ -56,4 +60,14 @@ module.exports = function (passport) {
       done(err, user);
     });
   });
+}
+
+
+module.exports.isAuthorised = function (req, res, next) {
+  if(req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('info', 'Log in before proceeding');
+    res.redirect('/users/login');
+  }
 }

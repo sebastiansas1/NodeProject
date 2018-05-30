@@ -23,8 +23,12 @@ html(lang="en")
         a.nav-link(href='/') Home
         a.nav-link(href='/restaurants/add') Add Restaurant
       ul.nav.navbar-nav.navbar-right
-        li  
-          a.nav-link(href='/users/login') Log In
+        if locals.user
+          li
+            a.nav-link(href='/users/logout') Log Out
+        else
+          li  
+            a.nav-link(href='/users/login') Log In
           
     main.middle-section
 

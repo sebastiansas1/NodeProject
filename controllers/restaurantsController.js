@@ -2,6 +2,30 @@
 let Restaurant = require("../models/restaurant");
 let Review = require("../models/review");
 
+// Index Method [for GET]
+exports.index = function (req, res) {
+  var reviews = [];
+  var rest = [];
+  Restaurant.find({}, function (err, restaurants) {
+    if (err) {
+      console.log(err);
+    } else {
+      Review.find({}, function (err2, reviews) {
+        if (err2) {
+          console.log(err2);
+
+        } else {
+          res.render("restaurant/index", {
+            title: "All restaurants ",
+            restaurants: restaurants,
+            reviews: reviews
+          });
+        }
+      })
+    }
+  });
+};
+
 // Setup Restaurant Method [for GET]
 exports.add = function (req, res) {
   res.render("restaurant/add", {
@@ -28,11 +52,18 @@ exports.create = function (req, res) {
   restaurant.save(function (err) {
     if (err) {
       req.flash('danger', 'Fields Required!');
-      return res.status(200).send({result: 'fields_missing', message: req.flash('message')});
-      
+      return res.status(200).send({
+        result: 'fields_missing',
+        message: req.flash('message')
+      });
+
     } else {
       req.flash('success', 'Restaurant Added!');
-      return res.status(200).send({result: 'redirect', url:'/', message: req.flash('message')});
+      return res.status(200).send({
+        result: 'redirect',
+        url: '/',
+        message: req.flash('message')
+      });
     }
   });
 };
@@ -70,10 +101,17 @@ exports.update = function (req, res) {
   Restaurant.update(query, restaurant, function (err) {
     if (err) {
       req.flash('danger', 'Fields Required!');
-      return res.status(200).send({result: 'fields_missing', message: req.flash('message')});
+      return res.status(200).send({
+        result: 'fields_missing',
+        message: req.flash('message')
+      });
     } else {
       req.flash('success', 'Restaurant Successfully modified!');
-      return res.status(200).send({result: 'redirect', url:'/restaurants/'+req.params.id, message: req.flash('message')});
+      return res.status(200).send({
+        result: 'redirect',
+        url: '/restaurants/' + req.params.id,
+        message: req.flash('message')
+      });
     }
   });
 };
@@ -81,7 +119,7 @@ exports.update = function (req, res) {
 // Show Restaurant Method [for GET]
 exports.show = function (req, res) {
   Restaurant.findById(req.params.id, function (err, restaurant) {
-    if(req.params.id != null){
+    if (req.params.id != null) {
       var query = {
         "restaurant_id": restaurant._id
       };
@@ -124,6 +162,7 @@ exports.delete = function (req, res) {
   });
 };
 
+// Find Restaurant with Search [for GET]
 exports.find = function (req, res) {
   var search = req.params.search;
   var name = {
@@ -140,4 +179,33 @@ exports.find = function (req, res) {
   }, function (err, items) {
     res.jsonp(items);
   });
+};
+
+// Search for a Restaurant [for ?]
+exports.search = function (req, res) {
+  let search = req.params.search_query;
+  var name = {
+    name: new RegExp(search, "i")
+  };
+  var city = {
+    city: new RegExp(search, "i")
+  };
+  Restaurant.find({
+    $or: [name, city]
+  }, function (err, restaurants) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("restaurant/index", {
+        title: "Search result for " + search,
+        restaurants: restaurants
+      });
+    }
+  });
+};
+
+// Authenticate user
+exports.authenticate = function (req, res, next) {
+  res.locals.user = req.user || null;
+  next();
 };

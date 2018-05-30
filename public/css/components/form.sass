@@ -3,21 +3,30 @@
 label.form-label
   margin: 5px
   font-size: 12px
-  
-#password-dropdown
+
+.jumbotron
+  height: auto
+  padding: 35px
+
+.vertical-center
+  display: flex
+  align-items: center
+
+#password-criteria
   margin: 0
+  font-size: 12px
   display: block
-  padding-left: 20px
   border-radius: 0px 0px 6px 6px
   border: 1px solid transparent 
   border-top: transparent
-  max-height: 0px
-  height: 0px
-  overflow: hidden !important
   transition: 0.2s linear
+  &:focus
+    border: 1px solid transparent !important
+
+li.password-condition
+  list-style-type: none
 
 .restaurant-form-group, .review-form-group
-  width: 70%
   margin-bottom: 10px
   
 .compressed

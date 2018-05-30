@@ -36,12 +36,44 @@ router.get("/login", users_controller.login);
 //   });
 // });
 
-router.post('/login', function(req, res, next) {
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req,res,next);
+router.post('/login', function (req, res, next) {
+
+  console.log(req.body.email);
+  console.log(req.body.password);
+
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      req.flash('danger', 'User not found');
+      return res.status(200).send({
+        result: 'fields_missing',
+        message: req.flash('message')
+      });
+    }
+
+    // req / res held in closure
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      } else {
+        req.flash('success', 'Welcome back!');
+        return res.status(200).send({
+          result: 'redirect',
+          url: '/',
+          message: req.flash('message')
+        });
+      }
+    });
+  })(req, res, next);
+});
+
+router.get('/logout', function (req, res) {
+  req.logout();
+  req.flash('success', "See you soon!");
+  res.redirect('/');
 });
 
 // Export Router Paths

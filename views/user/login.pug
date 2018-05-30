@@ -5,19 +5,27 @@ block content
 
   .container.content
 
-    h1 Log In
+    .row.title
+      .col-md-12.text-center
 
-    br
+        h1.title Log In
 
-    form#login_form
-      //- Form Group with parameters (LabelName, ID, input, type, value, form_group_name)
-      +form_group("Email", "email", "input", "text", "", "user-form-group")
-      +form_group("Password", "password", "input", "password", "", "user-form-group")
-      button.btn.btn-primary(type="submit") Log In
-    
-    li.list-group-item
-      .row
-        p.signup-comment Don't have an account?
-        a.signup-link(href='/users/signup') Register
+    .row
+      .col-md-6.offset-md-3
+        form#login_form
+
+          //- Form Group with parameters (LabelName, ID, input, type, value, form_group_name)
+          h4.form-label Account Credentials
+          +form_group("Email", "email", "input", "text", "", "user-form-group")
+          +form_group("Password", "password", "input", "password", "", "user-form-group")
+          button.btn.btn-primary(type="submit") Log In
+
+        #flash-message
+            .flash-box
+        
+        li.list-group-item
+          .row
+            p.signup-comment Don't have an account?
+            a.signup-link(href='/users/signup') Register
 
   script(src='/javascripts/login.js')

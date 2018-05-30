@@ -9,41 +9,47 @@ block content
 
       != messages('panels/flash', locals)
 
-      h1.title #{title}
+    .row.title
+      .col-md-12.text-center
 
-      form.create-form(id='croco')
-        
-        //- Form Group with parameters form_group(label, id, input, input_type, value, form_group_name)
-        h4.form-label Name
-        +form_group("Name", "name", "input", "text", "", "restaurant-form-group")
-        h4.form-label Address
-        +form_group("Address Line 1", "addressLine1", "input", "text", "", "restaurant-form-group")
-        +form_group("Address Line 2", "addressLine2", "input", "text", "", "restaurant-form-group")
-        #form-group(class="restaurant-form-group")
-          span.compressed
-            input.form-control(id="city", type="text", value="", placeholder="eg. Sheffield")
-            label.form-label City
-          span.compressed
-            input.form-control(id="county", type="text", value="")
-            label.form-label County
-        #form-group(class="restaurant-form-group")
-          span.compressed
-            input.form-control(id="country", type="text", value="")
-            label.form-label Country
-          span.compressed
-            input.form-control(id="postcode", type="text", value="", placeholder="eg. S11 3HA")
-            label.form-label Postcode
-        h4.form-label Contact
-        #form-group(class="restaurant-form-group")
-          span.compressed
-            input.form-control(id="phoneNumber", type="number", value="", placeholder="eg. 7458 33241")
-            label.form-label Phone
-          span.compressed
-            input.form-control(id="website", type="text", value="", placeholder="eg. www.restaurant.co.uk")
-            label.form-label Website
-        h4.form-label Details
-        +form_group("Cuisine", "cuisine", "input", "text", "", "restaurant-form-group")
-        +form_group("Description", "description","textarea", "", "", "restaurant-form-group")
-        br
+        h1.title #{title}
 
-        button.btn.btn-purple.create-restaurant(type="submit") Create
+    .row
+      .col-md-8.offset-md-2
+
+        form.create-form
+          
+          //- Form Group with parameters form_group(label, id, input, input_type, value, form_group_name)
+          h4.form-label Name
+          +form_group("Name", "name", "input", "text", "", "restaurant-form-group")
+          h4.form-label Address
+          +form_group("Address Line 1", "addressLine1", "input", "text", "", "restaurant-form-group")
+          +form_group("Address Line 2", "addressLine2", "input", "text", "", "restaurant-form-group")
+          #form-group(class="restaurant-form-group")
+            span.compressed
+              input.form-control(id="city", type="text", value="", placeholder="eg. Sheffield")
+              label.form-label City
+            span.compressed
+              input.form-control(id="county", type="text", value="")
+              label.form-label County
+          #form-group(class="restaurant-form-group")
+            span.compressed
+              input.form-control(id="country", type="text", value="")
+              label.form-label Country
+            span.compressed
+              input.form-control(id="postcode", type="text", value="", placeholder="eg. S11 3HA")
+              label.form-label Postcode
+          h4.form-label Contact
+          #form-group(class="restaurant-form-group")
+            span.compressed
+              input.form-control(id="phoneNumber", type="number", value="", placeholder="eg. 7458 33241")
+              label.form-label Phone
+            span.compressed
+              input.form-control(id="website", type="text", value="", placeholder="eg. www.restaurant.co.uk")
+              label.form-label Website
+          h4.form-label Details
+          +form_group("Cuisine", "cuisine", "input", "text", "", "restaurant-form-group")
+          +form_group("Description", "description","textarea", "", "", "restaurant-form-group")
+          br
+
+          button.btn.btn-purple.create-restaurant(type="submit") Create
