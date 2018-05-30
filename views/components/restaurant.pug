@@ -1,8 +1,8 @@
 include ./picture
+include ./review_rest
 
 
 mixin restaurants
-
   each restaurant in restaurants
     li.list-group-item
       .row
@@ -13,7 +13,34 @@ mixin restaurants
           //- Information About Restaurant
           a(href="/restaurants/"+restaurant._id)
             h4=restaurant.name
-          p=restaurant.cuisine
+          -var sum = 0;
+          -var review_count = 0;
+            each review in reviews
+              if restaurant._id == review.restaurant_id
+                -sum=sum+review.stars
+                -review_count++;
+            -var n = 0;
+            span(style = "display:inline-block;width:100%;")   
+              while n<Math.round(sum/review_count, 10)
+                i.fas.fa-star.heading-1.icon
+                - n++
+              a(href="/restaurants/"+restaurant._id)
+                if review_count == 1
+                  p #{review_count} review
+                else 
+                  if review_count == 0
+                    a(href="/restaurants/"+restaurant._id+"/reviews/add") #{review_count} reviews, add a review now  
+                  else
+                    p #{review_count} reviews 
+              
+            
+           
+          p=restaurant.cuisine  
+          
+      
+
+            
+           
 
 mixin restaurant_info
 
