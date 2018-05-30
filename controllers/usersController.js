@@ -35,7 +35,7 @@ exports.register = function (req, res) {
               console.log(err);
             }
           } else {
-            // No Error
+            // Successful registration
             res.sendStatus(200);
           }
         });

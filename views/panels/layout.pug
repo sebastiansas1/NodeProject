@@ -27,6 +27,9 @@ html(lang="en")
           a.nav-link(href='/users/login') Log In
           
     main.middle-section
+
+      != messages('panels/flash', locals)
+
       block content
       br
     

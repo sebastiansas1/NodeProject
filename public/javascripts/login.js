@@ -33,7 +33,11 @@ $(document).ready(function() {
         }),
         // Valid form field values on serverside
         success: function(res) {
-          console.log('Successful Log??');
+          if (res.result == 'redirect') {
+            window.location.replace(res.url);
+          } else {
+            window.location.replace('/users/login');
+          }
         },
         // Invalid form field values on serverside
         error: function(err) {
@@ -45,7 +49,7 @@ $(document).ready(function() {
             $("#email").css("border", "1px solid #e01f3e");
           } else {
             // Unknown errors will be displayed on a JavaScript
-            alert("HHHHH: " + error);
+            alert("HHHHH: " + JSON.stringify(err));
           }
         }
       });

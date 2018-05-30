@@ -9,7 +9,7 @@ block content
 
     br
 
-    form#login_form(method="POST", action="/users/login" )
+    form#login_form
       //- Form Group with parameters (LabelName, ID, input, type, value, form_group_name)
       +form_group("Email", "email", "input", "text", "", "user-form-group")
       +form_group("Password", "password", "input", "password", "", "user-form-group")
@@ -20,4 +20,4 @@ block content
         p.signup-comment Don't have an account?
         a.signup-link(href='/users/signup') Register
 
-  //- script(src='/javascripts/login.js')
+  script(src='/javascripts/login.js')

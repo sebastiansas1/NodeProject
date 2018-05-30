@@ -37,7 +37,6 @@ router.get("/login", users_controller.login);
 // });
 
 router.post('/login', function(req, res, next) {
-  req.flash('Wassup Man!');
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login',
