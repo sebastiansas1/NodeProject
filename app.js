@@ -8,9 +8,9 @@ const session = require('express-session');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const config = require('./config/db');
-var googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyDWb2eLKaF_tyP9hsrTUZ3_CsOsXSoXXNg'
-});
+// var googleMapsClient = require('@google/maps').createClient({
+//   key: 'AIzaSyDWb2eLKaF_tyP9hsrTUZ3_CsOsXSoXXNg'
+// });
 
 
 mongoose.connect(config.database);
@@ -106,6 +106,9 @@ let users = require("./routes/users");
 
 // Controller requires
 let autocomplete = require("./controllers/restaurantsController");
+
+// Google maps Configuration
+require('./config/map');
 
 // Routes definitions
 app.use("/restaurants", restaurants);
