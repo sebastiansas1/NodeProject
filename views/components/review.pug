@@ -14,9 +14,9 @@ mixin reviews
     br
     .row.restaurant-pictures
       each image in review.image
-        .col-md-12.picture-container
+        .col-md-4.offeset-md-2
           .picture-container
-            img.picture(src="/"+image)
+            img.picture-mini(src="/"+image)
     hr
 
 mixin stars(numberOfStars)

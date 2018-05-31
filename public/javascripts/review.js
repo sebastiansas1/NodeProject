@@ -43,6 +43,13 @@ $(document).ready(function() {
     });
   });
 
+  $('.delete-review').each(function() {
+    if($(this).attr('user_id') != document.cookie.split('=')[1].split(';')[0]) {
+      $(this).hide();
+      $(this).parent().hide();
+    }
+  });
+
   $(".delete-review").on("click", function (e) {
     $target = $(e.target);
 
@@ -62,22 +69,4 @@ $(document).ready(function() {
     });
   });
 
-  $('.delete-review').each(function() {
-    if($(this).attr('user_id') != document.cookie.split('=')[1].split(';')[0]) {
-      $(this).hide();
-      $(this).parent().hide();
-    }
-  });
-
-  $(".btn-review").hover(function (e) {
-    $(this).prev().css("filter", "blur(1px)");
-  });
-
-  $(".delete-review").hover(function (e) {
-    $(this).parent().prev().css("filter", "blur(1px)");
-  });
-
-  $(".btn-review").mouseout(function (e) {
-    $(this).prev().css("filter", "blur(0px)");
-  });
 });

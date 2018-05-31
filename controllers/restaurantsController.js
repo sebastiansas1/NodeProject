@@ -100,7 +100,6 @@ exports.update = function (req, res) {
   restaurant.website = req.body.website;
   restaurant.cuisine = req.body.cuisine;
   restaurant.description = req.body.description;
-  console.log("HERE! : " + req.params.id); // Comment to console for debugging
 
   let query = {
     _id: req.params.id

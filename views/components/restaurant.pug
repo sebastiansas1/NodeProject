@@ -5,28 +5,20 @@ mixin restaurants
   each restaurant in restaurants
     li.list-group-item
       .row
-        .col-md-3.col-restaurant-picture
+        .col-md-3
           //- Here Goes Picture of Restaurant
-         
           if restaurant.image[0] == undefined
-            img(src="/static/images/imageNA.png" height="120px" width="100%" alt="restaurant picture" style="margin-top: 15px")
+            img.picture-mini(src="/static/images/imageNA.png" alt="restaurant picture")
           else
-            img(src="/"+restaurant.image[0] height="70px" width="100%" alt="restaurant picture" style="margin-top: 15px")
-        .col-md-10.col-restaurant-info
+            img.picture-mini(src="/"+restaurant.image[0] alt="restaurant picture")
+        .col-md-8.col-restaurant-info
           //- Information About Restaurant
-          a(href="/restaurants/"+restaurant._id)
+          a.simple-link(href="/restaurants/"+restaurant._id)
             h4=restaurant.name
-          -var sum = 0;
-          -var review_count = 0;
+            - var sum = 0;
             each review in reviews
-              if restaurant._id == review.restaurant_id
-                -sum=sum+review.stars
-                -review_count++;
-            -var n = 0;
-            span(style = "display:inline-block;width:100%;")   
-              while n<Math.round(sum/review_count, 10)
-                i.fas.fa-star.heading-1.icon
-                - n++
+              -sum=sum+review.stars;
+            +stars(Math.round(sum/reviews.length, 10))
               a(href="/restaurants/"+restaurant._id)
                 if review_count == 1
                   p #{review_count} review
