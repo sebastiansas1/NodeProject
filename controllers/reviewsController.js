@@ -1,3 +1,5 @@
+
+
 // Bring in Review Model
 let Review = require("../models/review");
 
@@ -25,7 +27,7 @@ exports.create = function (req, res) {
   console.log("stars " + req.body.stars);
   console.log("rest ID " + req.body.restaurant_id);
 
-  console.log("here 1: creating review");
+  console.log("here 1: creating review"); // Comment to console for debugging
   
   //check if there is an image for the review 
   if(req.files.length == 0) {
@@ -37,7 +39,7 @@ exports.create = function (req, res) {
       var storage = 'static/uploads/' + req.files[i].filename;
       path_image.push(storage);
       review.image = path_image;
-      console.log("adding image to review");
+      console.log("adding image to review"); // Comment to console for debugging
     }
   } 
   review.save(function (err) {

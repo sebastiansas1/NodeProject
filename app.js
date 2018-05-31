@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author: Sebastian Sas Mangel, Andreea-Camelia-Simona Berte, Joseph D'Souza
+ */
+
+// Require all packages 
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -8,23 +14,23 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const config = require('./config/db');
 
-// Init App
+// Initialise Application
 const app = express();
 mongoose.connect(config.database);
 
-// Require Controllers
+// Require Controller (Restaurant)
 let restaurant_controller = require('./controllers/restaurantsController');
 
-// Require All Routes
+// Require All Routes (Restauarants, Reviews, Uploads, Users)
 let restaurants = require("./routes/restaurants");
 let reviews = require("./routes/reviews", {mergeParams: true});
 let uploads = require("./routes/uploads", {mergeParams: true});
 let users = require("./routes/users");
 
-// Set connection with DB
+// Set connection with Database
 let db = mongoose.connection;
 
-// Check connection
+// Check connection with Database
 db.once("open", function () {
   console.log("Connected to MongoDB");
 });
@@ -64,12 +70,12 @@ app.use(function (req, res, next) {
 });
 app.use(flash());
 
-// Passport Configuration
+// Passport Configuration to handle User Registration
 require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Google maps Configuration
+// Google Maps Configuration
 require('./config/map');
 
 // Routes available on homepage
@@ -84,7 +90,7 @@ restaurants.use('/:restaurant_id/upload', uploads);
 app.get("/autocomplete/:search", restaurant_controller.find);
 app.use("/users", users);
 
-// Start Server
+// Start Server on Local Host (3000)
 app.listen(3000, function () {
   console.log("Server started on port 3000");
 });

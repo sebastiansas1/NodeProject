@@ -130,6 +130,10 @@ $(document).ready(function() {
   });
 });
 
+/**
+ * Validates email format 
+ * @param {String} email The email used in the registration form
+ */
 function validateEmail(email) {
   // Check if email is empty or not
   if (email) {
