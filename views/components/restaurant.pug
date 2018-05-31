@@ -7,7 +7,11 @@ mixin restaurants
       .row
         .col-md-2.col-restaurant-picture
           //- Here Goes Picture of Restaurant
-          img(src="/"+restaurant.image[0] height="70px" width="100%" alt="restaurant picture" style="margin-top: 15px")
+         
+          if restaurant.image[0] == undefined
+            img(src="/static/images/imageNA.png" height="120px" width="100%" alt="restaurant picture" style="margin-top: 15px")
+          -else
+            img(src="/"+restaurant.image[0] height="70px" width="100%" alt="restaurant picture" style="margin-top: 15px")
         .col-md-10.col-restaurant-info
           //- Information About Restaurant
           a(href="/restaurants/"+restaurant._id)

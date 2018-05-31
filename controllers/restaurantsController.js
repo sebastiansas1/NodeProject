@@ -191,16 +191,23 @@ exports.search = function (req, res) {
   var city = {
     city: new RegExp(search, "i")
   };
+  var cuisine = {
+    cuisine: new RegExp(search, "i")
+  };
   Restaurant.find({
-    $or: [name, city]
+    $or: [name, city, cuisine]
   }, function (err, restaurants) {
     if (err) {
       console.log(err);
     } else {
-      res.render("restaurant/index", {
-        title: "Search result for " + search,
-        restaurants: restaurants
+      Review.find({}, function(err2, reviews){
+        res.render("restaurant/index", {
+          title: "Search result for " + search,
+          restaurants: restaurants,
+          reviews: reviews
+        });
       });
+      
     }
   });
 };
