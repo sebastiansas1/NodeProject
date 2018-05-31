@@ -1,14 +1,13 @@
 include ./picture
 
-
 mixin restaurants
   each restaurant in restaurants
     li.list-group-item
       .row
-        .col-md-2.col-restaurant-picture
+        .col-md-3.col-restaurant-picture
           //- Here Goes Picture of Restaurant
-          img(src="/"+restaurant.image[0] height="70px" width="100%" alt="restaurant picture" style="margin-top: 15px")
-        .col-md-10.col-restaurant-info
+          img.picture-mini(src="/"+restaurant.image[0] height="70px" width="100%" alt="restaurant picture" style="margin-top: 15px")
+        .col-md-7.col-restaurant-info
           //- Information About Restaurant
           a(href="/restaurants/"+restaurant._id)
             h4=restaurant.name
@@ -33,10 +32,6 @@ mixin restaurants
                     p #{review_count} reviews 
    
           p=restaurant.cuisine  
-          
-      
-
-            
            
 
 mixin restaurant_info

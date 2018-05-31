@@ -1,5 +1,8 @@
 $(document).ready(function() {
   //Create Review AJAX
+  $('#star').raty({ path: '/static/bower_components/raty/lib/images', size: 30 });
+  $('#star').raty('score', 5);
+
   $("#review_form").submit(function(e) {
     e.preventDefault();
    
@@ -52,6 +55,7 @@ $(document).ready(function() {
       processData: false
     });
   });
+
 
   $(".delete-review").on("click", function (e) {
     console.log("delete review button clicked ");
