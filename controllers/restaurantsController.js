@@ -15,6 +15,7 @@ exports.index = function (req, res) {
           console.log(err2);
 
         } else {
+          res.locals.user = req.user;
           res.render("restaurant/index", {
             title: "All restaurants ",
             restaurants: restaurants,
@@ -38,8 +39,8 @@ exports.add = function (req, res) {
 exports.create = function (req, res) {
   let restaurant = new Restaurant();
   restaurant.name = req.body.name;
-  restaurant.addressLine1 = req.body.addressLine1;
-  restaurant.addressLine2 = req.body.addressLine2;
+  restaurant.nr = req.body.nr;
+  restaurant.street = req.body.street;
   restaurant.city = req.body.city;
   restaurant.county = req.body.county;
   restaurant.country = req.body.country;
@@ -82,8 +83,8 @@ exports.edit = function (req, res) {
 exports.update = function (req, res) {
   let restaurant = {};
   restaurant.name = req.body.name;
-  restaurant.addressLine1 = req.body.addressLine1;
-  restaurant.addressLine2 = req.body.addressLine2;
+  restaurant.nr = req.body.nr;
+  restaurant.street = req.body.street;
   restaurant.city = req.body.city;
   restaurant.county = req.body.county;
   restaurant.country = req.body.country;

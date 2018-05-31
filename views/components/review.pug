@@ -1,5 +1,9 @@
 mixin reviews
- 
+  
+  if reviews.length == 0 
+    p This restaurant has not received any review yet. 
+    p Add one!
+
   each review in reviews
     
     - var n = 0;
@@ -15,7 +19,7 @@ mixin reviews
 
     .row.restaurant-pictures
       each image in review.image
-        .col-md-6.picture-container
+        .col-md-12.picture-container
           .picture-container
             img.picture(src="/"+image)
     hr

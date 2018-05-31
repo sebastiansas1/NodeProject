@@ -18,21 +18,30 @@ block content
           h4.form-label Name
           +form_group("Name", "name", "input", "text", restaurant.name, "restaurant-form-group")
           h4.form-label Address
-          +form_group("Address Line 1", "addressLine1", "input", "text", restaurant.addressLine1, "restaurant-form-group")
-          +form_group("Address Line 2", "addressLine2", "input", "text", restaurant.addressLine2, "restaurant-form-group")
+          #form-group(class="restaurant-form-group")
+            input.form-control(id="search-address", type="text", value="", autocomplete="off")
+            label.form-label Search Address
+          br
+          #form-group(class="restaurant-form-group")
+            span.mini
+              input.form-control(id="nr", type="text", value=restaurant.nr, disabled=true)
+              label.form-label Street Nr
+            span.maxy
+              input.form-control(id="street", type="text", value=restaurant.street, disabled=true)
+              label.form-label Street
           #form-group(class="restaurant-form-group")
             span.compressed
-              input.form-control(id="city", type="text", value=restaurant.city)
+              input.form-control(id="city", type="text", value=restaurant.city, disabled=true)
               label.form-label City
             span.compressed
-              input.form-control(id="county", type="text", value=restaurant.county)
+              input.form-control(id="county", type="text", value=restaurant.county, disabled=true)
               label.form-label County
           #form-group(class="restaurant-form-group")
             span.compressed
-              input.form-control(id="country", type="text", value=restaurant.country)
+              input.form-control(id="country", type="text", value=restaurant.country, disabled=true)
               label.form-label Country
             span.compressed
-              input.form-control(id="postcode", type="text", value=restaurant.postcode)
+              input.form-control(id="postcode", type="text", value=restaurant.postcode, disabled=true)
               label.form-label Postcode
           h4.form-label Contact
           #form-group(class="restaurant-form-group")

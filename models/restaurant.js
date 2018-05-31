@@ -6,27 +6,23 @@ const restaurantSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  addressLine1: {
-    type: String,
-    required: true
+  nr: {
+    type: String
   },
-  addressLine2: {
+  street: {
     type: String
   },
   city: {
-    type: String,
-    required: true
+    type: String
   },
   county: {
     type: String
   },
   country: {
-    type: String,
-    required: true
+    type: String
   },
   postcode: {
-    type: String,
-    required: true
+    type: String
   },
   phoneNumber: {
     type: Number
@@ -36,8 +32,7 @@ const restaurantSchema = mongoose.Schema({
   },
   cuisine:  
     [{
-      type: String,
-      required: true
+      type: String
     }],
   description: {
     type: String

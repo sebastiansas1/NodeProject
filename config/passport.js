@@ -22,8 +22,6 @@ module.exports = function (passport) {
       User.findOne(query, function (err, user) {
         if (err) throw err;
         if (!user) {
-          console.log('NO USER FOUND');
-          // req.flash('alert', 'No user Found!');
           return done(null, false, {
             message: 'No user found!'
           });
@@ -33,15 +31,10 @@ module.exports = function (passport) {
         bcrypt.compare(password, user.password, function (err, isMatch) {
           if (err) throw err;
           if (isMatch) {
-            // req.flash('success', 'Welcome back ' + email);
-            // return res.status(200).send({result: 'redirect', url:'/', message: req.flash('message')});
-            console.log('LOGGED IN!');
-            // done.flash('success', 'Welcome Back!');
             return done(null, user, {
               message: 'Welcome back ' + user.email
             });
           } else {
-            console.log('WRONG PASSWORD');
             // req.flash('alert', 'Wrong Password');
             return done(null, false, {
               message: 'Wrong password!'
@@ -65,9 +58,11 @@ module.exports = function (passport) {
 
 module.exports.isAuthorised = function (req, res, next) {
   if(req.isAuthenticated()) {
+    res.locals.user = req.user
     return next();
   } else {
     req.flash('info', 'Log in before proceeding');
+    req.session.returnTo = req.originalUrl;
     res.redirect('/users/login');
   }
 }

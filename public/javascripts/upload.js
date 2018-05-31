@@ -17,7 +17,8 @@ $(document).ready(function () {
       },
       error: function (err) {
         console.log("Error");
-        $("#upload-photo").css("color", "red");
+        $("#upload-photo").css("color", "white");
+        $("#upload-photo").css("background-color", "red");
         $("#upload-photo").css("border", "1px solid red");
         $("#upload-photo").attr("value", "Please Select A Picture To Upload");
       },

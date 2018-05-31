@@ -70,9 +70,10 @@ mixin restaurant_info
     i.fas.fa-map-marker-alt.heading-2.icon
     #address
       span
-        | #{restaurant.addressLine1} , 
-        | #{restaurant.city} ,
-        | #{restaurant.country} ,
+        | #{restaurant.nr} 
+        | #{restaurant.street}, 
+        | #{restaurant.city},
+        | #{restaurant.country},
         | #{restaurant.postcode} |
   
     i.fas.fa-phone-volume.heading-2.icon
@@ -80,15 +81,12 @@ mixin restaurant_info
     i.fas.fa-laptop.heading-2.icon-web
     - if(restaurant.website)
       p.heading-2
-        a(href='http://' + restaurant.website.replace('http://','')) Website
+        a.simple-link(href='http://' + restaurant.website.replace('http://','')) Official Website
 
   +picture
 
   p.description= restaurant.description
-  
-  .row
-    .row(style="width: 80%; display:flex;")
-      #map(style="width: 80%; height: 400px;")
+
       
 
  

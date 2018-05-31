@@ -17,8 +17,8 @@ $(document).ready(function() {
   $(".create-form").on("submit", function(e) {
     e.preventDefault();
     var name = document.getElementById("name").value;
-    var addressLine1 = document.getElementById("addressLine1").value;
-    var addressLine2 = document.getElementById("addressLine2").value;
+    var nr = document.getElementById("nr").value;
+    var street = document.getElementById("street").value;
     var city = document.getElementById("city").value;
     var county = document.getElementById("county").value;
     var country = document.getElementById("country").value;
@@ -28,13 +28,6 @@ $(document).ready(function() {
     var cuisine = document.getElementById("cuisine").value;
     var description = document.getElementById("description").value;
 
-    // alert(isValid(name));
-    // isValid(addressLine1);
-    // isValid(city);
-    // isValid(county);
-    // isValid(country);
-    // isValid(postcode);
-    // isValid(cuisine);
 
 
     $.ajax({
@@ -43,8 +36,8 @@ $(document).ready(function() {
       contentType: "application/json",
       data: JSON.stringify({
         name: name,
-        addressLine1: addressLine1,
-        addressLine2: addressLine2,
+        nr: nr,
+        street: street,
         city: city,
         county: county,
         country: country,
@@ -73,8 +66,8 @@ $(document).ready(function() {
     $target = $(e.target);
     const id = $target.attr("data-id");
     var name = document.getElementById("name").value;
-    var addressLine1 = document.getElementById("addressLine1").value;
-    var addressLine2 = document.getElementById("addressLine2").value;
+    var nr = document.getElementById("nr").value;
+    var street = document.getElementById("street").value;
     var city = document.getElementById("city").value;
     var county = document.getElementById("county").value;
     var country = document.getElementById("country").value;
@@ -89,8 +82,8 @@ $(document).ready(function() {
       contentType: "application/json",
       data: JSON.stringify({
         name: name,
-        addressLine1: addressLine1,
-        addressLine2: addressLine2,
+        nr: nr,
+        street: street,
         city: city,
         county: county,
         country: country,

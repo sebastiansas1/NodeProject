@@ -17,27 +17,36 @@ block content
     .row
       .col-md-8.offset-md-2
 
-        form.create-form
+        form.create-form(autocomplete="off")
           
           //- Form Group with parameters form_group(label, id, input, input_type, value, form_group_name)
           h4.form-label Name
           +form_group("Name", "name", "input", "text", "", "restaurant-form-group")
           h4.form-label Address
-          +form_group("Address Line 1", "addressLine1", "input", "text", "", "restaurant-form-group")
-          +form_group("Address Line 2", "addressLine2", "input", "text", "", "restaurant-form-group")
+          #form-group(class="restaurant-form-group")
+            input.form-control(id="search-address", type="text", value="", autocomplete="off")
+            label.form-label Search Address
+          br
+          #form-group(class="restaurant-form-group")
+            span.mini
+              input.form-control(id="nr", type="text", value="", disabled=true)
+              label.form-label Street Nr
+            span.maxy
+              input.form-control(id="street", type="text", value="", disabled=true)
+              label.form-label Street
           #form-group(class="restaurant-form-group")
             span.compressed
-              input.form-control(id="city", type="text", value="", placeholder="eg. Sheffield")
+              input.form-control(id="city", type="text", value="", disabled=true)
               label.form-label City
             span.compressed
-              input.form-control(id="county", type="text", value="")
+              input.form-control(id="county", type="text", value="", disabled=true)
               label.form-label County
           #form-group(class="restaurant-form-group")
             span.compressed
-              input.form-control(id="country", type="text", value="")
+              input.form-control(id="country", type="text", value="", disabled=true)
               label.form-label Country
             span.compressed
-              input.form-control(id="postcode", type="text", value="", placeholder="eg. S11 3HA")
+              input.form-control(id="postcode", type="text", value="", disabled=true)
               label.form-label Postcode
           h4.form-label Contact
           #form-group(class="restaurant-form-group")
@@ -53,3 +62,6 @@ block content
           br
 
           button.btn.btn-purple.create-restaurant(type="submit") Create
+
+
+  script(src='/javascripts/map.js')

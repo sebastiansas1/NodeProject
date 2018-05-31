@@ -10,7 +10,8 @@ html(lang="en")
     script(src='/bundle.js')
     script(src='/bower_components/jquery/dist/jquery.js')
     script(src='/javascripts/map.js')
-    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWb2eLKaF_tyP9hsrTUZ3_CsOsXSoXXNg&region=GB&callback=initMap" )
+    script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWb2eLKaF_tyP9hsrTUZ3_CsOsXSoXXNg&libraries=places&callback=initMap")
+    //- script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWb2eLKaF_tyP9hsrTUZ3_CsOsXSoXXNg&region=GB&callback=initMap" )
     title FancyFood
 
 </script>
@@ -21,9 +22,10 @@ html(lang="en")
         img(src="https://logosinside.com/uploads/posts/2016-09/medium/noodles-and-company-logo.png", alt="logo", width="100px", height="50px")
       nav.nav.justify-content-center
         a.nav-link(href='/') Home
-        a.nav-link(href='/restaurants/add') Add Restaurant
+        if user
+          a.nav-link(href='/restaurants/add') Add Restaurant
       ul.nav.navbar-nav.navbar-right
-        if locals.user
+        if user
           li
             a.nav-link(href='/users/logout') Log Out
         else
@@ -39,7 +41,6 @@ html(lang="en")
     
     footer
       p.copyright Copyright &reg; 2018
-
 
   
   script(src='/bower_components/jquery-ui/jquery-ui.js')

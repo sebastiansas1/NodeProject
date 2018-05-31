@@ -11,15 +11,22 @@ block content
     br
     br
     
-    .row.restaurant-title
-      .col-md-6.col-restaurant-title
-        h2 Reviews
-      .col-md-6.col-restaurant-title
-        a.btn.btn-purple.float-right(href=restaurant._id + "/reviews/add") Add Review   
-    hr
-
-    +reviews
-
+    h2.title.text-center(style="font-weight:bold;") Overview
+    hr(style="margin-bottom:50px;")
     
+    .row
+      .col-md-6
+        .row.restaurant-title
+          .col-md-6.col-restaurant-title
+            h3 Reviews
+          .col-md-6.col-restaurant-title
+            a.btn.btn-purple.float-right(href=restaurant._id + "/reviews/add") Add Review   
+        hr
+        +reviews
 
-    
+      .col-md-6
+        .row.restaurant-title
+          .col-md-12.text-center
+            h3 Location
+        hr
+        #map(style="width: 100%; height: 400px;")

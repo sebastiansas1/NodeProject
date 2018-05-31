@@ -14,32 +14,13 @@ router.post("/register", users_controller.register);
 // Login User [GET]
 router.get("/login", users_controller.login);
 
-// router.post('/login', function(req, res, next) {
-//   console.log(req);
-//   passport.authenticate('local', function(err, user, info) {
-//     res.sendStatus(999);
-//     if (err) { return next(err); }
-//     res.sendStatus(999);
-//     if (!user) { 
-//       res.sendStatus(999);
-//       // User does not exist
-//       return res.redirect('/users/login'); 
-//     }
-//     req.logIn(user, function(err) {
-//       res.sendStatus(999);
-//       if (err) { return next(err); }
-
-//       // User Successfully Logs In!
-//       res.sendStatus(999);
-//       res.end();
-//     });
-//   });
-// });
-
 router.post('/login', function (req, res, next) {
 
-  console.log(req.body.email);
-  console.log(req.body.password);
+  if (req.session.returnTo == undefined) {
+    var path = "/";
+  } else {
+    var path = req.session.returnTo;
+  }
 
   passport.authenticate('local', function (err, user, info) {
     if (err) {
@@ -59,10 +40,10 @@ router.post('/login', function (req, res, next) {
       if (err) {
         return next(err);
       } else {
-        req.flash('success', 'Welcome back!');
+        req.flash('success', 'Welcome back ' + user.email.split('@')[0]);
         return res.status(200).send({
           result: 'redirect',
-          url: '/',
+          url: path,
           message: req.flash('message')
         });
       }
@@ -72,8 +53,9 @@ router.post('/login', function (req, res, next) {
 
 router.get('/logout', function (req, res) {
   req.logout();
+  delete req.session.returnTo;
   req.flash('success', "See you soon!");
-  res.redirect('/');
+  res.redirect('/users/login');
 });
 
 // Export Router Paths
