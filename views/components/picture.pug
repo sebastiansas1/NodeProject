@@ -15,11 +15,10 @@ mixin picture_manager
   .row.restaurant-pictures
     each image in restaurant.image
       .col-md-6.picture-container
+        button.btn-delete-picture
+          i.fas.fa-times.delete-icon(data-id=image, name=restaurant._id)
         img.picture(src="/"+image)
-        button.btn-pic
-          i.fas.fa-times.delete-picture(data-id=image, name=restaurant._id)
-  .row
-    br
+
 
  
 

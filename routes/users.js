@@ -7,7 +7,7 @@ const passport = require('passport');
 let users_controller = require("../controllers/usersController");
 
 // Register User [GET]
-router.get("/signup", users_controller.signup);
+router.get("/register", users_controller.signup);
 
 router.post("/register", users_controller.register);
 
@@ -40,7 +40,10 @@ router.post('/login', function (req, res, next) {
       if (err) {
         return next(err);
       } else {
-        req.flash('success', 'Welcome back ' + user.email.split('@')[0]);
+        req.flash('success', 'Welcome back ' + user.name);
+        // Insert user.id in cookie
+        res.cookie('userid', user.id, { maxAge: 2592000000 }); 
+        res.cookie('username', user.name, { maxAge: 2592000000 }); 
         return res.status(200).send({
           result: 'redirect',
           url: path,
@@ -55,6 +58,9 @@ router.get('/logout', function (req, res) {
   req.logout();
   delete req.session.returnTo;
   req.flash('success', "See you soon!");
+  // Clear user.id from cookies
+  res.clearCookie('userid');
+  res.clearCookie('username');
   res.redirect('/users/login');
 });
 

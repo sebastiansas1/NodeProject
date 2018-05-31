@@ -12,7 +12,7 @@ block content
 
     .row
       .col-md-7
-        form#signup_form
+        form#registration_form
 
           //- Form Group with parameters (LabelName, ID, input, type, value)
           h4.form-label Account Details
@@ -20,6 +20,9 @@ block content
           +form_group("Email", "email", "input", "text", "", "user-form-group")
           +form_group("Password", "password", "input", "password", "", "password-form-group")
           +form_group("Confirm Password", "c-password", "input", "password", "", "password-form-group")
+          #form-group(class="password-form-group")
+            input(id='admin', type='checkbox', data-toggle='toggle', style='width=100px; heigth:100px;' data-on="Yes" data-off="No")
+            label.form-label Are you an administrator? 
           br
           button.btn.btn-primary(type="submit") Register
 

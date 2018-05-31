@@ -53,6 +53,11 @@ $(document).ready(function() {
   });
 
   // Email validation on each key strike
+  $("#name").on("keyup", function(event) {
+    validateName($("#name").val());
+  });
+
+  // Email validation on each key strike
   $("#email").on("keyup", function(event) {
     validateEmail($("#email").val());
   });
@@ -60,34 +65,40 @@ $(document).ready(function() {
   // Password confirm validation on each key strike
   $("#c-password").on("keyup", function(event) {
     validatePassword($("#password").val(), $(this).val());
-    $("#password-dropdown").css("border", "1px solid transparent");
   });
 
-  // On signup form submitted event
-  $("#signup_form").submit(function(event) {
+  // On registration form submitted event
+  $("#registration_form").submit(function(event) {
     // Prevent default action for form
     event.preventDefault();
+    
+    var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     var c_password = document.getElementById("c-password").value;
+    var admin = $('#admin').parent().hasClass('btn-primary');
+
+    var valid_name = validateName(name);
     var valid_email = validateEmail(email);
     var valid_password = validatePassword(password, c_password);
 
     // Validate all form fields before submitting data from form
-    if (valid_email == true && valid_password == true) {
+    if (valid_name == true && valid_email == true && valid_password == true) {
       // All fields are valid. AJAX action to be submitted
       $.ajax({
         type: "POST",
         url: "/users/register",
         contentType: "application/json",
         data: JSON.stringify({
+          name: name,
           email: email,
           password: password,
-          c_password: c_password
+          c_password: c_password,
+          admin: admin
         }),
         // Valid form field values on serverside
         success: function(res) {
-          window.location.href = "/";
+          window.location.href = "/users/login";
         },
         // Invalid form field values on serverside
         error: function(err) {
@@ -97,25 +108,27 @@ $(document).ready(function() {
             $(".flash-box").text("Account already exists with email: " + email);
             $("#flash-message").css("visibility", "visible");
             $("#email").css("border", "1px solid #e01f3e");
-            $("#password-dropdown").css("border", "1px solid transparent");
           } else {
             // Unknown errors will be displayed on a JavaScript
             alert("Error: " + error);
-            $("#password-dropdown").css("border", "1px solid transparent");
           }
         }
       });
     }
     // Invalid email format or missing
+    else if (valid_name != true) {
+      $(".flash-box").text(valid_name);
+      $("#flash-message").css("visibility", "visible");
+      $("#name").css("border", "1px solid #e01f3e");
+    }
+    // Invalid email format or missing
     else if (valid_email != true) {
-      console.log("Got inside validation -- Invalid email");
       $(".flash-box").text(valid_email);
       $("#flash-message").css("visibility", "visible");
       $("#email").css("border", "1px solid #e01f3e");
     }
     // Invalid password format or missing
     else if (valid_password != true) {
-      console.log("Got inside validation -- Invalid password");
       $(".flash-box").text(valid_password);
       $("#flash-message").css("visibility", "visible");
       $("#password").css("border", "1px solid #e01f3e");
@@ -124,14 +137,20 @@ $(document).ready(function() {
       alert("SERVER ERROR - UNKNOWN");
     }
   });
-
-  $("#password").on("focus", function(event) {
-    $("#password-dropdown").css("visibility");
-  });
 });
 
+function validateName(name) {
+  if (name) {
+    $("#flash-message").css("visibility", "hidden");
+    $("#name").css("border", "1px solid #00bf93");
+    return true;
+  } else {
+    return "Name field is required";
+  }
+}
+
 /**
- * Validates email format 
+ * Validates email format
  * @param {String} email The email used in the registration form
  */
 function validateEmail(email) {
@@ -172,7 +191,6 @@ function validatePassword(password, c_password) {
     if (validFormat) {
       // Valid password format
       $("#password").css("border", "1px solid #00bf93");
-      // $("#password-dropdown").css("border", "1px solid #00bf93");
       if (password == c_password) {
         // Passwords match
         $("#flash-message").css("visibility", "hidden");

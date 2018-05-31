@@ -1,4 +1,5 @@
 include ./picture
+include ./review
 
 mixin restaurants
   each restaurant in restaurants
@@ -36,7 +37,7 @@ mixin restaurants
                     p #{review_count} reviews 
    
           p=restaurant.cuisine  
-           
+          
 
 mixin restaurant_info
 
@@ -45,10 +46,11 @@ mixin restaurant_info
       h1=restaurant.name
     .col-md-6.col-restaurant-title
       if locals.user
-        a.btn.btn-red.float-right.delete-restaurant(href='#' data-id=restaurant._id) Delete
-        a.btn.btn-gray.float-right(href=restaurant._id + '/edit' ) Edit
-        a.btn.btn-success.float-right(href=restaurant._id + "/upload" data-id=restaurant._id) Manage photos   
-          i.fas.fa-camera-retro
+        if locals.user.admin == true
+          a.btn.btn-red.float-right.delete-restaurant(href='#' data-id=restaurant._id) Delete
+          a.btn.btn-gray.float-right(href=restaurant._id + '/edit' ) Edit
+          a.btn.btn-success.float-right(href=restaurant._id + "/upload" data-id=restaurant._id) Manage photos   
+            i.fas.fa-camera-retro
      
            
   hr
@@ -56,13 +58,11 @@ mixin restaurant_info
     - var sum = 0;
     each review in reviews
      -sum=sum+review.stars;
-    -var n = 0;
-    while n<Math.round(sum/reviews.length, 10)
-      i.fas.fa-star.heading-1.icon
-      - n++
+    +stars(Math.round(sum/reviews.length, 10))
 
     p.heading-1.underlined #{reviews.length} reviews 
-    p.heading-1 |  #{restaurant.cuisine}
+    p.heading-1 |
+    p.heading-1= restaurant.cuisine
   .row.restaurant-heading-2
     i.fas.fa-map-marker-alt.heading-2.icon
     #address

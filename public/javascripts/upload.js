@@ -28,7 +28,7 @@ $(document).ready(function () {
     });
   });
 
-  $(".delete-picture").on("click", function (e) {
+  $(".delete-icon").on("click", function (e) {
 
     $target = $(e.target);
     const id = $target.attr("data-id");
@@ -58,17 +58,31 @@ $(document).ready(function () {
     });
   });
 
-  $(".btn-pic").hover(function (e) {
-    $(this).prev().css("filter", "blur(1px)");
+
+  $(".picture").each(function() {
+    $(this).prev().css("height", $(this).height());
+    $(this).prev().css("width", $(this).width());
   });
 
-  $(".delete-picture").hover(function (e) {
-    $(this).parent().prev().css("filter", "blur(1px)");
+  $(".btn-delete-picture").each(function() {
+
+    $(this).mouseenter(function() {
+      $(this).next().css("filter", "blur(2px) brightness(50%)");
+      $(this).children().css("color", "white");
+      $(this).children().mouseenter(function() {
+        $(this).parent().trigger('mouseenter');
+      });
+    });
+
+    $(this).mouseout(function() {
+      $(this).next().css("filter", "blur(0px) brightness(100%)");
+      $(this).children().css("color", "transparent");
+      $(this).children().mouseout(function() {
+        $(this).parent().trigger('mouseenter');
+      });
+    });
   });
 
-  $(".btn-pic").mouseout(function (e) {
-    $(this).prev().css("filter", "blur(0px)");
-  });
 
 
   $("input:file").change(function () {

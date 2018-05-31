@@ -1,54 +1,41 @@
 $(document).ready(function() {
-  //Create Review AJAX
-  $('#star').raty({ path: '/static/bower_components/raty/lib/images', size: 30 });
-  $('#star').raty('score', 5);
+
+  $('#star').raty({ path: '/static/bower_components/raty/lib/images'});
 
   $("#review_form").submit(function(e) {
     e.preventDefault();
-   
 
     var title = document.getElementById("title").value;
     var comment = document.getElementById("comment").value;
-    var stars = document.getElementById("stars").value;
+    var stars = $('#star').raty('score');
+    var restaurant_id = window.location.href.split('/')[4];
+    var user_id = document.cookie.split('=')[1].split(';')[0];
+    var user_name = document.cookie.split('=')[2].split(';')[0];
 
     var formData = new FormData(this);
-    console.log("form data" + formData);
     formData.append('title', title);
     formData.append('comment', comment);
     formData.append('stars', stars);
     formData.append('restaurant_id', restaurant_id);
-
-    console.log("loc = "  + window.location.href);
-    var fullUrl = window.location.href;
-    var restaurant_id = fullUrl.split('/')[4];
-    console.log("rest id " + restaurant_id);
-
+    formData.append('user_id', user_id);
+    formData.append('user_name', user_name);
 
     // Display the key/value pairs
     for (var pair of formData.entries())
     {
       console.log(pair[0]+ ', '+ pair[1]); 
     }
-
-    
+  
     $.ajax({
       type: "POST",
       url: "/restaurants/"+ restaurant_id +"/reviews/add",
       contentType: "application/json",
-      // data: JSON.stringify({
-      //   title: title,
-      //   comment: comment,
-      //   stars: stars,
-      //   restaurant_id: restaurant_id
-      // }),
       data: formData,
       success: function(res) {
-        alert(restaurant_id);
         window.location.href = "/restaurants/"+restaurant_id;
       },
       error: function(err) {
-        console.log("Error");
-        alert(err);
+        console.log(err);
       },
       cache: false,
       contentType: false,
@@ -56,30 +43,30 @@ $(document).ready(function() {
     });
   });
 
-
   $(".delete-review").on("click", function (e) {
-    console.log("delete review button clicked ");
     $target = $(e.target);
 
     var review_id = $target.attr("name");
     var restaurant_id = $target.attr("restaurant_id");
-    window.console.log("restaurant iD " + restaurant_id);
-
-    window.console.log("review_id = " + review_id);
 
     $.ajax({
       type: "POST",
       url: "/restaurants/"+ restaurant_id +"/reviews/remove/" + review_id,
       data: review_id,
       success: function (res) {
-        console.log("Successs");
         window.location.href = "/restaurants/" + restaurant_id;
       },
       error: function (err) {
-        console.log("Error");
         console.log(err);
       }
     });
+  });
+
+  $('.delete-review').each(function() {
+    if($(this).attr('user_id') != document.cookie.split('=')[1].split(';')[0]) {
+      $(this).hide();
+      $(this).parent().hide();
+    }
   });
 
   $(".btn-review").hover(function (e) {

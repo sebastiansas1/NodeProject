@@ -8,10 +8,9 @@ $(document).ready(function() {
   // Password confirm validation on each key strike
   $("#password").on("keyup", function(event) {
     validatePassword($(this).val(), $('#c-password').val());
-    // $("#password-dropdown").css("border", "1px solid transparent");
   });
 
-  // On signup form submitted event
+  // On login form submitted event
   $("#login_form").submit(function(event) {
     // Prevent default action for form
     event.preventDefault();

@@ -12,34 +12,31 @@
   height: 150px
 
 .picture
-  height: 100%
+  height: auto
   width: 100%
   border: 1px solid lightgray
   border-radius: 7px
 
 .picture-mini
-  height: 90%
   width: 100%
+  height: auto
   border: 1px solid lightgray
   border-radius: 7px
 @media screen and (max-width: $screen-small)
   .picture-mini
     height: 200px
 
-.btn-pic
+.btn-delete-review
   float: right
   position: relative
   cursor: pointer
-  padding: 5px
-  bottom: 99.5%
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5)
   padding: 0px
   margin: 5px
   width: 25px
   height: 25px
   line-height: 25px
   border-radius: 50%
-  border: 0px
   transition: 0.1s linear
   i.fas.fa-times
     transition: 0.1s linear
@@ -47,11 +44,28 @@
     font-size: 13px
     color: black
   &:hover
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9)
+    border: 1px solid $color-gray
     i.fas.fa-times
       color: black
       opacity: 1
-
   &:focus
     outline: none
     color: black
+
+.btn-delete-picture
+  width: 100%
+  position: absolute
+  cursor: pointer
+  border: 0px
+  z-index: 10
+  background-color: transparent
+  transition: 0.1s linear
+  i.fas.fa-times
+    transition: 0.1s linear
+    z-index: -1
+    color: transparent
+    font-size: 20px
+
+img.bullet
+  margin: 10px 1px 15px 1px

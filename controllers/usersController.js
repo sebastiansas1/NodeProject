@@ -10,7 +10,7 @@ let User = require("../models/user");
 
 
 exports.signup = function (req, res) {
-  res.render("user/signup");
+  res.render("user/register");
 };
 
 /**
@@ -20,13 +20,17 @@ exports.signup = function (req, res) {
  * @param {HTTP Response} res 
  */
 exports.register = function (req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
-  const c_password = req.body.c_password;
+  var name = req.body.name;
+  var email = req.body.email;
+  var password = req.body.password;
+  var c_password = req.body.c_password;
+  var admin = req.body.admin;
 
   let user = new User({
+    name: name,
     email: email,
-    password: password
+    password: password,
+    admin: admin
   });
 
   // Encrypt passwords with hash
@@ -49,7 +53,11 @@ exports.register = function (req, res) {
             }
           } else {
             // Successful registration
-            res.sendStatus(200);
+            req.flash('success', 'Thank you for register, please use email and password to login');
+            return res.status(200).send({
+              result: 'post_registration_login',
+              message: req.flash('message')
+            });
           }
         });
       }
@@ -57,7 +65,7 @@ exports.register = function (req, res) {
   });
 };
 
-
+// Login [for GET]
 exports.login = function (req, res) {
   res.render("user/login");
 };

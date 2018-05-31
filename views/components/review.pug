@@ -3,14 +3,12 @@ mixin reviews
   if reviews.length == 0 
     p This restaurant has not received any reviews yet. 
 
-  - var n = 0;
   each review in reviews
-    while n < review.stars
-      i.fas.fa-star.heading-1.icon
-      - n++
-    button.btn-pic
-      i.fas.fa-times.delete-review(data-id=review, name=review._id, restaurant_id=review.restaurant_id)
+    +stars(review.stars)
+    button.btn-delete-review
+      i.fas.fa-times.delete-review(data-id=review, name=review._id, restaurant_id=review.restaurant_id, user_id=review.user_id)
     h5=review.title
+    p.reviewer= 'by ' + review.user_name
     p=review.comment
     
     br
@@ -20,8 +18,15 @@ mixin reviews
           .picture-container
             img.picture(src="/"+image)
     hr
-  script(src='/javascripts/review.js')
 
+mixin stars(numberOfStars)
+  - var n = 0;
+  while (n < numberOfStars)
+    img.bullet(src="/static/bower_components/raty/lib/images/star-on.png")
+    - n++
+  while (n < 5)
+    img.bullet(src="/static/bower_components/raty/lib/images/star-off.png")
+    - n++
 
 mixin reviews_info
   br
@@ -73,5 +78,3 @@ mixin review_bar(count, title)
     .col-md-2
       p=width+"%"
   
-
-  script(src='/javascripts/review.js')

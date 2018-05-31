@@ -9,6 +9,11 @@ const mongoose = require('mongoose');
 // User Schema
 const userSchema = mongoose.Schema({
 
+  name: {
+    type: String,
+    required: true
+  },
+
   // Email address (required to log in)
   email: {
     type: String,

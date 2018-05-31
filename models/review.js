@@ -27,8 +27,18 @@ const reviewSchema = mongoose.Schema({
     type: Number,
   },
 
-  // Restauarant ID (Foreign Key to Restauarant)
+  // Restaurant ID (Foreign Key to Restauarant)
   restaurant_id: {
+    type: String,
+  },
+
+  // User ID (Foreign Key to User)
+  user_id: {
+    type: String,
+  },
+
+   // User name
+   user_name: {
     type: String,
   },
 

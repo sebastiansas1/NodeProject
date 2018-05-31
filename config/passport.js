@@ -32,7 +32,7 @@ module.exports = function (passport) {
           if (err) throw err;
           if (isMatch) {
             return done(null, user, {
-              message: 'Welcome back ' + user.email
+              message: 'Welcome back ' + user.name
             });
           } else {
             // req.flash('alert', 'Wrong Password');
