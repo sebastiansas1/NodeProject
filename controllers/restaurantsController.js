@@ -1,3 +1,8 @@
+/*
+  - Restauarants Controller containing the methods to find, add, edit, search and delete restaurants. 
+  - Includes both the GET and POST methods required. 
+*/
+
 // Bring in Restaurant & Review Models
 let Restaurant = require("../models/restaurant");
 let Review = require("../models/review");
@@ -6,6 +11,8 @@ let Review = require("../models/review");
 exports.index = function (req, res) {
   var reviews = [];
   var rest = [];
+
+  // Parsing the model to find all restauarants, as no parameters are included in search function
   Restaurant.find({}, function (err, restaurants) {
     if (err) {
       console.log(err);
@@ -59,7 +66,7 @@ exports.create = function (req, res) {
       });
 
     } else {
-      req.flash('success', 'Restaurant Added!');
+      req.flash('success', 'Restaurant Added!'); // Confirmation Flash message to user
       return res.status(200).send({
         result: 'redirect',
         url: '/',
@@ -93,7 +100,7 @@ exports.update = function (req, res) {
   restaurant.website = req.body.website;
   restaurant.cuisine = req.body.cuisine;
   restaurant.description = req.body.description;
-  console.log("HERE BRO! : " + req.params.id);
+  console.log("HERE! : " + req.params.id); // Comment to console for debugging
 
   let query = {
     _id: req.params.id
@@ -198,7 +205,7 @@ exports.search = function (req, res) {
     $or: [name, city, cuisine]
   }, function (err, restaurants) {
     if (err) {
-      console.log(err);
+      console.log(err); // Comment to console for debugging
     } else {
       Review.find({}, function(err2, reviews){
         res.render("restaurant/index", {

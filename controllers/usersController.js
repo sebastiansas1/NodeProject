@@ -1,11 +1,24 @@
+/*
+  - Users Controller containing the methods to register and login to an account. 
+*/
+
+// Require Bcrypt 
 const bcrypt = require("bcryptjs");
+
 // Bring in User model
 let User = require("../models/user");
+
 
 exports.signup = function (req, res) {
   res.render("user/signup");
 };
 
+/**
+ * 
+ * @param {HTTP Request} req The request containing the registration input fields
+ * that will be passed to the User Model. 
+ * @param {HTTP Response} res 
+ */
 exports.register = function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
@@ -43,6 +56,7 @@ exports.register = function (req, res) {
     });
   });
 };
+
 
 exports.login = function (req, res) {
   res.render("user/login");
