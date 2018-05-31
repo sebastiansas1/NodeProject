@@ -23,5 +23,94 @@ mixin reviews
           .picture-container
             img.picture(src="/"+image)
     hr
+  script(src='/javascripts/review.js')
+
+
+mixin restaurant_reviews
+  br
+  br
+  if reviews.length == 0 
+    p This restaurant has not received any review yet. 
+    p Add one!
+
+  -var one_count = 0 
+  -var two_count = 0
+  -var three_count = 0
+  -var four_count = 0
+  -var five_count = 0  
+  - var n = 0;
+  each review in reviews 
+
+    if Math.round(review.stars,10) == 1
+      -one_count = one_count + 1
+    else 
+      if Math.round(review.stars,10) == 2
+        -two_count = two_count + 1
+      else
+        if Math.round(review.stars,10) === 3
+          -three_count  = three_count + 1
+        else
+          if Math.round(review.stars,10) == 4
+            -four_count  = four_count + 1
+          else
+            if Math.round(review.stars,10) == 5
+              -five_count  = five_count + 1
+
+  .row
+    .col-md-3
+      p Excellent
+    .col-md-4
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+    .col-md-3
+      p #{five_count} reviews
+    .col-md-2
+      p=(five_count/reviews.length*100).toFixed(0)+"%"
+  .row
+    .col-md-3
+      p Very good
+    .col-md-4
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+    .col-md-3
+      p #{four_count} reviews
+    .col-md-2
+      p=(four_count/reviews.length*100).toFixed(0)+"%"
+  .row
+    .col-md-3
+      p Average
+    .col-md-4
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+    .col-md-3
+      p #{three_count} reviews
+    .col-md-2
+      p=(three_count/reviews.length*100).toFixed(0)+"%"
+  .row
+    .col-md-3
+      p Poor
+    .col-md-4
+      i.fas.fa-star.heading-1.icon
+      i.fas.fa-star.heading-1.icon
+    .col-md-3 
+      p #{two_count} reviews
+    .col-md-2
+      p=(two_count/reviews.length*100).toFixed(0)+"%"
+  .row
+    .col-md-3
+      p Terrible
+    .col-md-4
+      i.fas.fa-star.heading-1.icon
+    .col-md-3
+      p #{one_count} reviews
+    .col-md-2
+      p=(one_count/reviews.length*100).toFixed(0)+"%"
+
 
   script(src='/javascripts/review.js')

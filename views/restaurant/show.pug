@@ -19,10 +19,20 @@ block content
         .row.restaurant-title
           .col-md-6.col-restaurant-title
             h3 Reviews
-          .col-md-6.col-restaurant-title
-            a.btn.btn-purple.float-right(href=restaurant._id + "/reviews/add") Add Review   
+        .row.restaurant-title
         hr
-        +reviews
+        +restaurant_reviews
+        .row.restaurant-title
+          .col-md-6.col-restaurant-title
+            h3 Opening hours
+        
+        //- .row.restaurant-title
+        //-   .col-md-6.col-restaurant-title
+        //-     h3 Reviews
+        //-   .col-md-6.col-restaurant-title
+        //-     a.btn.btn-purple.float-right(href=restaurant._id + "/reviews/add") Add Review   
+        //- hr
+        //- +reviews
 
       .col-md-6
         .row.restaurant-title
@@ -30,3 +40,13 @@ block content
             h3 Location
         hr
         #map(style="width: 100%; height: 400px;")
+    br
+    .row
+      .col-md-6
+        .row.restaurant-title
+          .col-md-6.col-restaurant-title
+            h3 Reviews
+          .col-md-6.col-restaurant-title
+            a.btn.btn-purple.float-right(href=restaurant._id + "/reviews/add") Add Review   
+          hr
+          +reviews
