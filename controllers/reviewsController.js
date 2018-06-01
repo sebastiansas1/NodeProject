@@ -1,4 +1,7 @@
-
+/*
+  - Reviews Controller containing the methods to add and delete reviews. 
+  - Includes GET, POST and DELETE methods required. 
+*/
 
 // Bring in Review Model
 let Review = require("../models/review");

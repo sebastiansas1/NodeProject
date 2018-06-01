@@ -1,6 +1,6 @@
 /**
  * 
- * @author: Sebastian Sas Mangel, Andreea-Camelia-Simona Berte, Joseph D'Souza
+ * @author: Sebastian Sas Mangel, Andreea-Camelia-Simona Bertea, Joseph D'Souza
  */
 
 // Require all packages 
