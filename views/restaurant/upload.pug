@@ -8,20 +8,26 @@ block content
   
     br
 
-    h1 #{title} for  
-      a.simple-link(href="/restaurants/" + restaurant.id) #{restaurant.name}
-      
-    hr
-    p Upload Pictures
-
-    form#upload_form
-      label.btn.btn-primary
-        .upload-message Select Pictures
-        input(class="form-control" id="file" type='file' name='image' multiple,  style='visibility: hidden; height: 0px;')
-        input(disabled='', class="form-control" type='submit' value='' id="upload-photo")
+    .row.title
+      .col-md-12.text-center
   
-    p Picture Manager
+        h1 #{title} for  
+          a.simple-link(href="/restaurants/" + restaurant.id) #{restaurant.name}
+              
+    hr
+    br
+    .row
+      .col-md-6.offset-md-3
+        h4.form-label.text-center Upload Pictures
 
-    +picture_manager
+        form#upload_form
+          label.btn.btn-purple-upload
+            .upload-message Select Pictures
+            input(class="form-control" id="file" type='file' name='image' multiple,  style='visibility: hidden; height: 0px;')
+            input(disabled='', class="form-control" type='submit' value='' id="upload-photo")
+        br
+        h4.form-label.text-center Picture Manager
+        
+        +picture_manager
 
   script(src='/javascripts/upload.js')

@@ -16,7 +16,7 @@ exports.manage = function (req, res) {
   var restaurant_id = fullUrl.split('/')[2];
   Restaurant.findById(restaurant_id, function (err, restaurant) {
     res.render("restaurant/upload", {
-      title: "Upload Image",
+      title: "Official Pictures",
       restaurant: restaurant
     });
   });

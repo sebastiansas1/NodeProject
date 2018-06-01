@@ -1,11 +1,24 @@
 @import "./variables"
 
+.logo
+  width: 60%
+  height: 45px
+  margin: 5px
+
 .btn
   border-radius: 5px
   font-size: 16px
   color: white !important
 
 .btn-purple
+  background-color: $color-violet
+  &:hover
+    background-color: $color-violet-light
+
+.btn-purple-upload
+  border: 1px solid $color-violet
+  width: 100%
+  border-radius: 30px
   background-color: $color-violet
   &:hover
     background-color: $color-violet-light

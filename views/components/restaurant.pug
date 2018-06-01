@@ -15,21 +15,14 @@ mixin restaurants
           //- Information About Restaurant
           a.simple-link(href="/restaurants/"+restaurant._id)
             h4=restaurant.name
-            - var sum = 0;
-            each review in reviews
-              -sum=sum+review.stars;
-            +stars(Math.round(sum/reviews.length, 10))
-              a(href="/restaurants/"+restaurant._id)
-                if review_count == 1
-                  p #{review_count} review
-                else 
-                  if review_count == 0
-                    a(href="/restaurants/"+restaurant._id+"/reviews/add") #{review_count} reviews, add a review now  
-                  else
-                    p #{review_count} reviews 
-   
-          p=restaurant.cuisine  
-          
+          p=restaurant.cuisine 
+          .row.restaurant-heading-2(style='margin:0px;')
+            i.fas.fa-map-marker-alt.heading-2.icon
+            #address
+              span
+                | #{restaurant.city},
+                | #{restaurant.postcode}
+            
 
 mixin restaurant_info
 
@@ -71,6 +64,7 @@ mixin restaurant_info
     - if(restaurant.website)
       p.heading-2
         a.simple-link(href='http://' + restaurant.website.replace('http://','')) Official Website
+
 
   +picture
 

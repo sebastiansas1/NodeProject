@@ -83,8 +83,6 @@ $(document).ready(function () {
     });
   });
 
-
-
   $("input:file").change(function () {
     var fileName = $(this).val();
     $(".filename").html(fileName);
@@ -92,10 +90,9 @@ $(document).ready(function () {
     $("#upload-photo").attr("value", fileName.split("\\")[2]);
     $("#upload-photo").prop('disabled', false);
     $("#upload-photo").css('cursor', "pointer");
-    $("#upload-photo").css('background-color', "#007bff");
-    $(".upload-message").css('color', "black");
-    $(".btn.btn-primary").css('background-color', "white");
-    $(".btn.btn-primary").css('cursor', "initial");
+    $("#upload-photo").css('color', "black");
+    $(".upload-message").css('color', "white");
+    $(".btn.btn-purple-upload-mini").css('cursor', "initial");
   });
 
 });

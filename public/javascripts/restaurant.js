@@ -28,8 +28,6 @@ $(document).ready(function() {
     var cuisine = document.getElementById("cuisine").value;
     var description = document.getElementById("description").value;
 
-
-
     $.ajax({
       type: "POST",
       url: "/restaurants/add",
