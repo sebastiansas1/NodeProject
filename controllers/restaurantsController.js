@@ -1,6 +1,6 @@
 /*
   - Restauarants Controller containing the methods to find, add, edit, search and delete restaurants. 
-  - Includes both the GET and POST methods required. 
+  - Includes GET, POST and DELETE methods required. 
 */
 
 // Bring in Restaurant & Review Models

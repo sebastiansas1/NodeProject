@@ -1,3 +1,10 @@
+/*
+  - Uploads Controller containing the methods to add and delete photos. 
+  - Includes GET and POST methods required. To delete a picture a post request is sent to update the restaurant
+  entity and remove the item from the pictures array. A physical file deletion is also performed to ensure 
+  that there are no leftover images.  
+*/
+
 const fs = require('fs');
 
 // Bring in Restaurant model
